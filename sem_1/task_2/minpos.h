@@ -1,0 +1,1 @@
+int minpos(const char *fnam, int *len);

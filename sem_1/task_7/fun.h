@@ -1,0 +1,1 @@
+int fun(const char *fnam,int*z);

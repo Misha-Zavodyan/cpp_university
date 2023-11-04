@@ -1,0 +1,1 @@
+int mnogoch(const char *fnam, int *x, int *x_der, int *x_sum);

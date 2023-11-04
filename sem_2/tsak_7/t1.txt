@@ -1,0 +1,6 @@
+4.1 122 Aleev Damil
+3.1 121 Mavrin Artur
+5.0 122 Tolmachev Sergei
+2.0 121 Evgeni Bashmakov
+5.0 122 Tolmachev Sergei
+2.0 121 Evgeni Bashmakov 

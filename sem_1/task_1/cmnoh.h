@@ -1,0 +1,1 @@
+int cmnoh(const char *fnam, int *len);
