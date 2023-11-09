@@ -6,11 +6,47 @@ int main()
 {  
   size_t M=0;  
   M++;    
-  cout<< "Assignment copying" <<"\n";
   Darr myDarr;
-  size_t j;
-  cout<<"Enter the number of autotests: ";
+  size_t j=0;
+  //Big O notation test
+  cout<<"Enter the number of Big O test: ";
   cin>> j;
+  for (size_t i=0 ;i< j; ++i) {
+
+
+    myDarr.resize_arr(0);
+    for(size_t i=0;i<5;i++)
+      {
+          myDarr.push_back(rand()%20);
+      }
+    //cout <<myDarr;
+    myDarr.find(100);
+    myDarr.sort();
+
+    cout <<"*2"<<endl;
+    myDarr.resize_arr(0);
+    for(size_t i=0;i<(2*5);i++)
+      {
+          myDarr.push_back(rand()%20);
+      }
+    myDarr.find(100);
+    myDarr.sort();
+
+    cout <<"*4"<<endl;
+    myDarr.resize_arr(0);
+    for(size_t i=0;i<(4*5);i++)
+      {
+          myDarr.push_back(rand()%20);
+      }
+    myDarr.find(100);
+    myDarr.sort();
+    cout <<endl;
+  }
+  j=0;
+
+
+  // cout<<"Enter the number of autotests: ";
+  // cin>> j;
   for (size_t i=0 ;i< j; ++i) {
 
 

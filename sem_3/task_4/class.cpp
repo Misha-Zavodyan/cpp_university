@@ -139,25 +139,40 @@ double Darr::resize_arr(size_t M)
 
 double Darr::find(double x, size_t beg,size_t en)
 {
-  //if(en==0) en=N;
-  cout<<"begin ="<< beg <<"end ="<< en<<endl;
-  list <array<double,Con>>::iterator i=mylist.begin();
-  if (beg/Con!=0){
-    advance(i, beg/Con-1);
-  } else {
-    advance(i, (beg/Con));    
-  }
   
-  size_t j=(beg-1)%Con;
-  for(;beg<en;i++){
-    for(;j<Con;j++){
-      if(((*i)[j]-x)<0.0000001) {cout<<x << "  in array \n";return 1;}
-      beg++;
+  if(en==0) en=N;
+  list <array<double,Con>>::iterator i=mylist.begin();
+  if (beg!=0){
+    if (beg/Con!=0){
+      advance(i, beg/Con-1);
+    } else {
+      advance(i, (beg/Con));    
+    }
+  }
+
+  clock_t begin = clock();
+  size_t j=0;
+  if (beg!=0){j=(beg-1)%Con;}
+  for(;beg<en;++i){
+    for(;j<Con;++j){
+      if((abs((*i)[j]-x))<0.0000001) {
+        cout<<x << " in array \n";
+        clock_t end = clock();
+        double elapsed_secs = double(end - begin) ;
+        cout << "Find run time = " << elapsed_secs << " ms, array length: "<< this->N <<"\n";
+        return 1;
+      }
+      ++beg;
         }
       j=0;
       }
     cout<<x << " not in array \n";
-    return 0;
+
+  clock_t end = clock();
+  double elapsed_secs = double(end - begin) ;
+  cout << "Find run time = " << elapsed_secs << " ms, array length: "<< this->N <<"\n";
+  beg=0;en=0;
+  return 0;
 }
 
 double Darr::sort(void) 
@@ -166,6 +181,7 @@ double Darr::sort(void)
 
   double tmp;
   size_t l=0;
+  clock_t begin = clock();
   for(size_t k=N-1;k!=0;--k) {
     l=0;
     if(l<k){
@@ -194,7 +210,10 @@ double Darr::sort(void)
     }
   }
 
-
+  clock_t end = clock();
+  double elapsed_secs = double(end - begin);
+  cout << "Sort run time = " << elapsed_secs << " ms, array length: "<< this->N <<"\n";
+  
   return 0;
 }
 
