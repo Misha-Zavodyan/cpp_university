@@ -6,6 +6,8 @@
 #include <iostream>
 using namespace std;
 
+
+
 template<class T> 
 class Node{
   public:
@@ -15,6 +17,8 @@ class Node{
     Node(T value);
 
 };
+
+template class Node<double>;
 
 template<class T> 
 class RBtree
@@ -38,5 +42,10 @@ class RBtree
     // friend std::ostream &operator<<(std::ostream &out, Darr &x1);
 
 };
-                         
+
+
+template class RBtree<double>;
+//void delete_tree(Node<double> * curr);
+
+
 #endif                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 

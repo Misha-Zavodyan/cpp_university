@@ -16,7 +16,7 @@ template<class T> RBtree<T>::~RBtree(){
   delete_tree(root);
 }
 
-template<class T> void RBtree<T>::delete_tree(Node<T> * curr)
+template<class T> void delete_tree(Node<T> * curr)
 {
     if (curr)
     {
@@ -25,6 +25,7 @@ template<class T> void RBtree<T>::delete_tree(Node<T> * curr)
         delete curr;
     }
 }
+
 
 
 // std::ostream &operator<<(std::ostream &cout, Darr &x1)

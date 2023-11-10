@@ -15,7 +15,7 @@ int main()
 
 
     myDarr.resize_arr(0);
-    for(size_t i=0;i<5;i++)
+    for(size_t i=0;i<1000;i++)
       {
           myDarr.push_back(rand()%20);
       }
@@ -25,7 +25,7 @@ int main()
 
     cout <<"*2"<<endl;
     myDarr.resize_arr(0);
-    for(size_t i=0;i<(2*5);i++)
+    for(size_t i=0;i<(2000);i++)
       {
           myDarr.push_back(rand()%20);
       }
@@ -34,7 +34,7 @@ int main()
 
     cout <<"*4"<<endl;
     myDarr.resize_arr(0);
-    for(size_t i=0;i<(4*5);i++)
+    for(size_t i=0;i<(4000);i++)
       {
           myDarr.push_back(rand()%20);
       }
