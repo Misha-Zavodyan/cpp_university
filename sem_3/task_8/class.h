@@ -7,45 +7,58 @@
 using namespace std;
 
 
-
-template<class T> 
+template<class T>
+class RBtree
+{   
 class Node{
   public:
     T key;
-    Node<T> *left;
-    Node<T> *right;
+    Node  *left;
+    Node *right;
     Node(T value);
 
 };
-
-template class Node<double>;
-
-template<class T> 
-class RBtree
-{   
-  Node<T> *root; 
+  Node *root; 
   size_t t_size;
 
   public:
     RBtree(T key);
     ~RBtree();
-    void delete_tree(Node<T> * curr);
-    // double push_back(double x);
-    // double insert(double x,size_t k);
-    // double* operator[](std::size_t i); 
-    // double size_arr(void);
-    // double delet(size_t k);
-    // double resize_arr(size_t M);
-    // double find(double x, size_t beg = 0,size_t en=0);
-    // double sort(void); 
-    // double print(void);
+    void delete_tree(Node * curr);
     // friend std::ostream &operator<<(std::ostream &out, Darr &x1);
 
 };
 
 
-template class RBtree<double>;
-//void delete_tree(Node<double> * curr);
+
+
+template<class T> RBtree<T>::Node::Node(T value)
+{
+  key=value;
+  left=nullptr;
+  right=nullptr;
+}
+
+template<class T> RBtree<T>::RBtree(T key)
+{
+  root= new Node(key);
+}
+
+template<class T> RBtree<T>::~RBtree(){
+  delete_tree(root);
+}
+
+template<class T> void RBtree<T>::delete_tree(RBtree<T>::Node * curr)
+{
+    if (curr)
+    {
+        delete_tree(curr->left);
+        delete_tree(curr->right);
+        delete curr;
+    }
+}
+
+
 
 
 #endif                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 

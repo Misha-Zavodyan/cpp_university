@@ -1,31 +1,8 @@
 #include "class.h"
 
-template<class T> Node<T>::Node(T value)
-{
-  key=value;
-  left=nullptr;
-  right=nullptr;
-}
 
-template<class T> RBtree<T>::RBtree(T key)
-{
-  root= new Node<T>(key);
-}
-
-template<class T> RBtree<T>::~RBtree(){
-  delete_tree(root);
-}
-
-template<class T> void delete_tree(Node<T> * curr)
-{
-    if (curr)
-    {
-        delete_tree(curr->left);
-        delete_tree(curr->right);
-        delete curr;
-    }
-}
-
+// template<class T> void RBtree<T>::delete_tree(RBtree<T>::Node * curr);
+// template void RBtree<int>::delete_tree(RBtree<T>::Node * curr);
 
 
 // std::ostream &operator<<(std::ostream &cout, Darr &x1)
