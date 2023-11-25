@@ -18,13 +18,16 @@ class Node{
     Node(T value);
 
 };
+  public:
   Node *root; 
   size_t t_size;
 
-  public:
+  
     RBtree(T key);
     ~RBtree();
     void delete_tree(Node * curr);
+    void insert(Node * curr,T key);
+    Node * search(Node * curr,T key);
     // friend std::ostream &operator<<(std::ostream &out, Darr &x1);
 
 };
@@ -57,6 +60,29 @@ template<class T> void RBtree<T>::delete_tree(RBtree<T>::Node * curr)
         delete curr;
     }
 }
+
+template<class T> void RBtree<T>::insert(RBtree<T>::Node * curr,T key)
+{
+    if (key<curr->key)
+    {
+        if(curr->left==nullptr) curr->left=new Node(key);
+        else insert(curr->left,key);
+    }
+    if (key>=curr->key)
+    {
+        if(curr->right==nullptr) curr->right=new Node(key);
+        else insert(curr->right,key);
+    }
+}
+
+template<class T> RBtree<T>::Node * RBtree<T>::search(RBtree<T>::Node * curr, T key)
+{
+    if (curr == nullptr) return nullptr; 
+    if(curr->key==key) return curr;
+    return (key<curr->key)? search(curr->left,key) : search(curr->right,key);
+    
+}
+
 
 
 
