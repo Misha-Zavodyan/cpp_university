@@ -79,9 +79,23 @@ template<class T> RBtree<T>::Node * RBtree<T>::search(RBtree<T>::Node * curr, T 
 {
     if (curr == nullptr) return nullptr; 
     if(curr->key==key) return curr;
-    return (key<curr->key)? search(curr->left,key) : search(curr->right,key);
-    
+    return (key<curr->key)? search(curr->left,key) : search(curr->right,key);   
 }
+
+// template<class T> RBtree<T>::Node * RBtree<T>::getMin(RBtree<T>::Node * curr)
+// {
+//     if (curr == nullptr) return nullptr; 
+//     if(curr->left==nullptr) return curr;
+//     return getMin(curr->left);   
+// }
+
+// template<class T> RBtree<T>::Node * RBtree<T>::getMax(RBtree<T>::Node * curr)
+// {
+//     if (curr == nullptr) return nullptr; 
+//     if(curr->right==nullptr) return curr;
+//     return getMax(curr->right);   
+}
+
 
 
 
