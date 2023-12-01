@@ -13,39 +13,48 @@ class RBtree
 class Node{
   public:
     T key;
-    Node  *left;
+    Node *left;
     Node *right;
+    Node *parent;
+    bool color;
     Node(T value);
-//     bool color;
-
+    Node();
+    static Node * nil = static_cast<Node *>(new Node()); 
 };
   public:
   Node *root; 
-  size_t t_size;
+
 
   
     RBtree(T key);
     ~RBtree();
     void delete_tree(Node * curr);
-    void insert(Node * curr,T key);
+//     void insert(Node * curr,T key);
     void printTree(Node * curr);
     Node * search(Node * curr,T key); 
     Node * getMin(Node * curr); 
     Node * getMax(Node * curr); 
     Node * delet(Node * curr,T key);
-    // friend std::ostream &operator<<(std::ostream &out, Darr &x1);
+
 
 };
 
 
-
+template<class T> RBtree<T>::Node::Node()
+{
+  //key=nullptr;
+  left=nullptr;
+  right=nullptr;
+  color=true;
+}
 
 template<class T> RBtree<T>::Node::Node(T value)
 {
   key=value;
-  left=nullptr;
-  right=nullptr;
-//   color=false;
+  left=nil;
+  right=nil;
+  parent=nil;
+  color=false;
 }
 
 template<class T> RBtree<T>::RBtree(T key)
@@ -67,18 +76,39 @@ template<class T> void RBtree<T>::delete_tree(RBtree<T>::Node * curr)
     }
 }
 
-template<class T> void RBtree<T>::insert(RBtree<T>::Node * curr,T key)
-{
-    if (key<curr->key)
-    {
-        if(curr->left==nullptr) curr->left=new Node(key);
-        else insert(curr->left,key);
-    }
-    if (key>=curr->key)
-    {
-        if(curr->right==nullptr) curr->right=new Node(key);
-        else insert(curr->right,key);
-    }
+// template<class T> void RBtree<T>::insert(RBtree<T>::Node * curr,T key)
+// {
+//   RBtree<T>::Node * currentNode = root;
+//   RBtree<T>::Node * parent = nil;
+//   while(nodeExist(currentNode))
+//   {
+//     parent = currentNode;
+//     if(key<currentNode->key) currentNode=currentNode->left;
+//     else currentNode=currentNode->right
+//   }
+//   RBtree<T>::Node * newNode = Node();
+//   createNode(newNode,key);
+//   newNode->parent = parent;
+//   if(parent==nil) root=newNode;
+//   else if (key < parent.key) paretn->left = newNode;
+//   else parent->right = newNode;
+//   balanceTree(NewNode);//root == tree
+// }
+// 
+// template<class T> void createNode(RBtree<T>::Node * curr, T key){
+//     curr->parent=nil;
+//     curr->left=nil;
+//     curr->right=nil;
+//     curr->key=key;
+//     curr->color=false;
+// }
+// template<class T> bool nodeExist(RBtree<T>::Node * curr){
+//     return curr!=nil;
+// }
+
+template<class T> void RBtree<T>::balanceTree(RBtree<T>::Node * curr){
+  RBtree<T>::Node * uncle;
+  while(newNode->parent->color ==
 }
 
 template<class T> void RBtree<T>::printTree(RBtree<T>::Node * curr)
