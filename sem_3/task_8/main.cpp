@@ -5,7 +5,7 @@ using namespace std;
 int main()
 {  
   RBtree<double> m_tree(6);
-//  m_tree.printTree(m_tree.root);
+  m_tree.printTree(m_tree.root);
 //  cout<<endl;
 //  m_tree.insert(m_tree.root,4);
 //  m_tree.printTree(m_tree.root);

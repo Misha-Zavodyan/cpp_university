@@ -19,17 +19,19 @@ class Node{
     bool color;
     Node(T value);
     Node();
-    static Node * nil = static_cast<Node *>(new Node()); 
+
 };
   public:
-  Node *root; 
+    Node *root;
+    static Node *nil;
 
+    static Node* setNil(){nil = new Node; return nil;} 
 
   
     RBtree(T key);
     ~RBtree();
     void delete_tree(Node * curr);
-//     void insert(Node * curr,T key);
+    void insert(Node * curr,T key);
     void printTree(Node * curr);
     Node * search(Node * curr,T key); 
     Node * getMin(Node * curr); 
@@ -40,9 +42,11 @@ class Node{
 };
 
 
+template<class T> 
+typename RBtree<T>::Node* RBtree<T>::nil = RBtree<T>::setNil();
+
 template<class T> RBtree<T>::Node::Node()
 {
-  //key=nullptr;
   left=nullptr;
   right=nullptr;
   color=true;
@@ -94,7 +98,7 @@ template<class T> void RBtree<T>::delete_tree(RBtree<T>::Node * curr)
 //   else parent->right = newNode;
 //   balanceTree(NewNode);//root == tree
 // }
-// 
+
 // template<class T> void createNode(RBtree<T>::Node * curr, T key){
 //     curr->parent=nil;
 //     curr->left=nil;
@@ -106,10 +110,10 @@ template<class T> void RBtree<T>::delete_tree(RBtree<T>::Node * curr)
 //     return curr!=nil;
 // }
 
-template<class T> void RBtree<T>::balanceTree(RBtree<T>::Node * curr){
-  RBtree<T>::Node * uncle;
-  while(newNode->parent->color ==
-}
+// template<class T> void RBtree<T>::balanceTree(RBtree<T>::Node * curr){
+//   RBtree<T>::Node * uncle;
+//   while(newNode->parent->color ==
+// }
 
 template<class T> void RBtree<T>::printTree(RBtree<T>::Node * curr)
 {
