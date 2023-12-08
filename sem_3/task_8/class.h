@@ -34,7 +34,7 @@ class Node{
     void delete_tree(Node * curr);
     void updateHeight(Node * curr);
     int getHeight(Node * curr);
-    int getBalance(Node * curr);
+    // int getBalance(Node * curr);
     void swap(Node * a,Node * b);
     void rightRotate(Node * curr);
     void leftRotate(Node * curr);
@@ -69,7 +69,7 @@ template<class T> RBtree<T>::Node::Node(T value)
   left=nil;
   right=nil;
   parent=nil;
-  height=0;
+  height=1;
   color=false;
 }
 
@@ -97,12 +97,12 @@ template<class T> void RBtree<T>::updateHeight(RBtree<T>::Node * curr){
 }
 
 template<class T> int RBtree<T>::getHeight(RBtree<T>::Node * curr){
-    return curr == nullptr ? -1: curr->height;
+    return (curr == nullptr) ? -1: curr->height;
 }
 
-template<class T> int RBtree<T>::getBalance(RBtree<T>::Node * curr){
-    return (curr == nullptr) ? 0 : getHeight(curr->right) - getHeight(curr->left);
-}
+// template<class T> int RBtree<T>::getBalance(RBtree<T>::Node * curr){
+//     return (curr == nullptr) ? 0 : getHeight(curr->right) - getHeight(curr->left);
+// }
 
 template<class T> void RBtree<T>::swap(RBtree<T>::Node * a,RBtree<T>::Node * b){
     T a_key = a->key;
@@ -157,7 +157,8 @@ template<class T> void RBtree<T>::createNode(RBtree<T>::Node * curr, T key){
     curr->left=nil;
     curr->right=nil;
     curr->key=key;
-    curr->color=false;
+    curr->height=0;
+    curr->color=true;
 }
 template<class T> bool RBtree<T>::nodeExist(RBtree<T>::Node * curr){
     return curr!=nil;
@@ -208,9 +209,19 @@ template<class T> void RBtree<T>::balanceTree(RBtree<T>::Node * newNode){
 
 template<class T> void RBtree<T>::printTree(RBtree<T>::Node * curr)
 {
+    if(curr==nil) {cout<<"NIL "<<"\n"; return;}
     if(curr==nullptr) return;
     printTree(curr->left);
-    cout<<curr->key<<" ";
+    for (int i=0;i<curr->height;++i)
+        cout<<" ";
+    
+    cout<<curr->key;
+    if(curr->color==true) 
+    cout<< " - RED " ;
+    else
+    cout<< " - BLACK " ;
+    cout<<"\n";
+
     printTree(curr->right);
 }
 
