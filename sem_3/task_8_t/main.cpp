@@ -3,7 +3,8 @@
 
 int main() 
 {
-	vector<int> nums{ 10,40,30,60,90,70,20,50,80,100};
+	
+	vector<int> nums{ 8,13,27,1,6,15,25,22,11,17};
 	RBTree<int> tree;
 	for (auto num : nums)
 		tree.insert(num);
@@ -14,9 +15,9 @@ int main()
 	tree.postOrder();
 	cout << endl;
 	cout << "Serch 30: \n";
-	cout << endl<<tree.search(30)->key<<endl;
-	cout << "Delet 100 \n";
-	tree.remove(100);
+	//cout << endl<<tree.search(30)->key<<endl;
+	//cout << "Delet 13 \n";
+	//tree.remove(13);
 	tree.preOrder();
 	cout << endl;
 	cout << "\n RBTree: \n";
