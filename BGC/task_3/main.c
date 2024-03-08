@@ -55,7 +55,7 @@ int main(int argc,char *argv[])
   printf("\n");
   t=clock();
   sort8(a,b,n,cmp);
-  t=(clock()-t);
+  t=(clock()-t)/CLOCKS_PER_SEC;
   print_array(a,n,p);
   delete_array(a,n);
   free(a);

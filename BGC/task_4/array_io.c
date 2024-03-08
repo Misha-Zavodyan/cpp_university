@@ -55,28 +55,27 @@ int read_matrix(double *a,int n,int m, char * name)
   return SUCCESS;
 }
 
-double solution_1(double *a,int n,int m)
+double solution_1(double *a,int n)
 {
   int i,j;
   for(i=0;i<n;i++)
     for(j=0;j<i;j++)
-      if(fabs(a[i*n+j]-a[j*m+i])>eps)
+      if(fabs(a[i*n+j]-a[j*n+i])>eps)
         return 0;
   return 1;
 }
 
-double solution_2(double *a,int n,int m)
+double solution_2(double *a,int n)
 {
   int i;
   double res;
-  (void)m;
   res=0;
   for(i=0;i<n;i++)
     res+=a[i*n+i];
   return res;
 }
 
-void solution_3(double *a,int n,int m)
+void solution_3(double *a,int n)
 {
   int i,j;
   double tmp;
@@ -84,30 +83,30 @@ void solution_3(double *a,int n,int m)
     for(j=0;j<i;j++)
     {                 //mb tut if sdelat
       tmp=a[i*n+j];
-      a[i*n+j]=a[j*m+i];
-      a[j*m+i]=tmp;
+      a[i*n+j]=a[j*n+i];
+      a[j*n+i]=tmp;
     }
 }
 
-void solution_4(double *a,int n,int m)
+void solution_4(double *a,int n)
 {
   int i,j;
   for(i=0;i<n;i++)
     for(j=0;j<i;j++)
     {                 //mb tut if sdelat
-      a[i*n+j]=(a[i*n+j]+a[j*m+i])/2.;
-      a[j*m+i]=a[i*n+j];
+      a[i*n+j]=(a[i*n+j]+a[j*n+i])/2.;
+      a[j*n+i]=a[i*n+j];
     }
 }
 
-void solution_5(double *a,int n,int m)
+void solution_5(double *a,int n)
 {
   int i,j;
   for(i=0;i<n;i++)
     for(j=0;j<i;j++)
     {                 //mb tut if sdelat
-      a[i*n+j]=(a[i*n+j]-a[j*m+i])/2.;
-      a[j*m+i]=-1*a[i*n+j];
+      a[i*n+j]=(a[i*n+j]-a[j*n+i])/2.;
+      a[j*n+i]=-1*a[i*n+j];
     }
   for(i=0;i<n;i++)
     a[i*n+i]=0;
@@ -134,7 +133,6 @@ void solution_7(double *a,int n,int m,int i,int j)
   int k;
   double tmp;
   double *q,*p;
-  //(void)m;
   q=a+i;
   p=a+j;
   for(k=0;k<n;k++)
@@ -145,7 +143,7 @@ void solution_7(double *a,int n,int m,int i,int j)
   }  
 }
 
-void solution_8(double *a,int n,int m,int i,int j,int c)
+void solution_8(double *a,int n,int m,int i,int j,double c)
 {
   int k;
   double *q,*p;
@@ -156,4 +154,41 @@ void solution_8(double *a,int n,int m,int i,int j,int c)
   {
     p[k]+=c*q[k];
   }  
+}
+
+void solution_9(double *a,double *b,double *c,int n,int m)
+{ //b=m*1
+  int i,j;
+  double *q,summ;
+
+  for(i=0;i<n;i++)
+  {
+    summ=0;
+    q=a+i*m;
+    for(j=0;j<m;j++)
+    {
+      summ+=q[j]*b[j];
+    }
+    c[i]=summ;
+  }  
+}
+
+void solution_10(double *a,double *b,double *c,int n,int m,int k)
+{ 
+  int i,j,l;
+  double *q,*p,*d,summ;
+
+  for(i=0;i<n;i++)
+    q=a+i*m;
+    d=c+i*n;
+    for(j=0;j<k;j++)
+    {
+      summ=0;
+      p=b+j;
+      for(l=0;l<m;l++)
+      {
+        summ+=q[l]*(p[l*k]);
+      }
+      d[j]=summ;
+    }  
 }

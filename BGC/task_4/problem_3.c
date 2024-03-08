@@ -2,58 +2,60 @@
 
 int main(int argc,char *argv[])
 {
-  int (*f[])(const char *, const char *)={up_strcmp,down_strcmp,up_len,down_len};
-  const int len=sizeof(f)/sizeof(f[0]);
-  int (*cmp)(const char *,const char *);
-  int c,n,p,ret,res,task;
+  int n,p,k,ret,task;
   double t;
-  char *name,*x;
-  char **a;
+  char *name;
+  double *a;
 
-  task=3;
-  if(!(argc==6 && sscanf(argv[2],"%d",&c)==1 && sscanf(argv[3],"%d",&n)==1 && 
-  sscanf(argv[4],"%d",&p)==1 && c > 0 && c <= len ))
+  task=1;
+  if(!((argc==5 || argc==4) && sscanf(argv[1],"%d",&n)==1 && n>0 &&  
+  sscanf(argv[2],"%d",&p)==1 && p>=0 && 
+  sscanf(argv[3],"%d",&k)==1 && k>=0))
   {
-    printf("Usege: %s c n p name \n",argv[0]);
+    printf("Usege: %s n p k name \n",argv[0]);
     return ERROR_ARGUMENT;
   }
-  name = argv[5];
-  x = argv[1];
-  cmp = f[c-1];
-  a =(char**)malloc(n*sizeof(char*));
+  if(k==0)
+    name = argv[4];
+
+  a =(double*)malloc(n*n*sizeof(double));
   if (!a)
   {
-    printf("not enough memory! \n");
+    printf("not enough memory!\n");
     return ERROR_MEMORY;
   }
-  ret=read_array(a,n,name);
-  if (ret!=SUCCESS)
-  {
-    switch(ret)
-    {
-      case ERROR_READ:
-        printf("Can't reade %s! \n",name);
-        break;
-      case ERROR_OPEN:
-        printf("Can't open %s! \n",name);
-        break;
-      case ERROR_MEMORY:
-        printf("not enough memory! \n");
-        break;
-      default:
-        printf("Unknown error %d in file %s",ret,argv[0]);
-    }
-    free(a);
-    return ret;
+
+  if(k==0){
+    ret=read_matrix(a,n,n,name);
+  } else {
+    ret=init_matrix(a,n,n,k);
   }
-  print_array(a,n,p);
+
+  if (ret!=SUCCESS)
+    {
+      switch(ret)
+      {
+        case ERROR_READ:
+          printf("Can't reade %s! \n",name);
+          break;
+        case ERROR_OPEN:
+          printf("Can't open %s! \n",name);
+          break;
+        default:
+          printf("Unknown error %d in file %s %s",ret, k ? "file":"init" ,k ? name : " ");
+      }
+      free(a);
+      return ret;
+    }
+
+  printf("Inition matrix:\n");
+  print_matrix(a,n,n,p);
   t=clock();
-  res=sort3(a,x,n,cmp);
-  t=(clock()-t);
-  printf ("New array:\n");
-  print_array (a, n, p); /* вывод нового состояния массива a */
-  printf ("%s : Task = %d Res = %d Elapsed = %.2f\n",argv[0], task, res, t);
-  delete_array(a,n);
+  solution_3(a,n);
+  t=(clock()-t)/CLOCKS_PER_SEC;
+  printf("Result matrix:\n");
+  print_matrix(a,n,n,p);
+  printf ("%s : Task = %d Elapsed = %.2f\n",argv[0], task, t);
   free(a);
   return SUCCESS;
 }

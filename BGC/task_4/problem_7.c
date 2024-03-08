@@ -12,7 +12,7 @@ int main(int argc,char *argv[])
   && j>0 &&sscanf(argv[3],"%d",&n)==1 && n>0 && 
   sscanf(argv[4],"%d",&m)==1 && m>0 && 
   sscanf(argv[5],"%d",&p)==1 && p>=0 && 
-  sscanf(argv[6],"%d",&k)==1 && k>=0 && i<=n && j <= n))
+  sscanf(argv[6],"%d",&k)==1 && k>=0 && i<=m && j <= m))
   {
     printf("Usege: %s n m p k name \n",argv[0]);
     return ERROR_ARGUMENT;
@@ -53,7 +53,7 @@ int main(int argc,char *argv[])
   printf("Inition matrix:\n");
   print_matrix(a,n,m,p);
   t=clock();
-  solution_6(a,n,m,i-1,j-1);
+  solution_7(a,n,m,i-1,j-1);
   t=(clock()-t)/CLOCKS_PER_SEC;
   printf("Result matrix:\n");
   print_matrix(a,n,m,p);

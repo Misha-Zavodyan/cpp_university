@@ -2,11 +2,11 @@ FLAGS= -mfpmath=sse -fstack-protector-all -g -W -Wall -Wextra -Wunused -Wcast-al
 
 all: a.out
 
-a.out: main.o array_io.o
-	gcc main.o array_io.o -o a.out
+a.out: problem_10.o array_io.o
+	gcc problem_10.o array_io.o -o a.out
 
-main.o: main.o array_io.h
-	gcc -c $(FLAGS) main.c -o main.o
+problem_10.o: problem_10.o array_io.h
+	gcc -c $(FLAGS) problem_10.c -o problem_10.o
 
 array_io.o: array_io.c array_io.h
 	gcc -c $(FLAGS) array_io.c -o array_io.o
