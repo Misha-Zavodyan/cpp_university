@@ -60,7 +60,7 @@ double solution_1(double *a,int n)
   int i,j;
   for(i=0;i<n;i++)
     for(j=0;j<i;j++)
-      if(fabs(a[i*n+j]-a[j*n+i])>eps)
+      if(fabs(a[i*n+j]-a[j*n+i])>eps*(fabs(a[i*n+j])-fabs(a[j*n+i])))
         return 0;
   return 1;
 }
@@ -81,11 +81,12 @@ void solution_3(double *a,int n)
   double tmp;
   for(i=0;i<n;i++)
     for(j=0;j<i;j++)
-    {                 //mb tut if sdelat
-      tmp=a[i*n+j];
-      a[i*n+j]=a[j*n+i];
-      a[j*n+i]=tmp;
-    }
+      //if(fabs(a[i*n+j]-a[j*n+i])>eps*(fabs(a[i*n+j])-fabs(a[j*n+i])))
+      {              //mb tut if sdelat; ne on zamelyaet daze na simitrichnoi
+        tmp=a[i*n+j];
+        a[i*n+j]=a[j*n+i];
+        a[j*n+i]=tmp;
+      }
 }
 
 void solution_4(double *a,int n)
@@ -93,9 +94,15 @@ void solution_4(double *a,int n)
   int i,j;
   for(i=0;i<n;i++)
     for(j=0;j<i;j++)
-    {                 //mb tut if sdelat
-      a[i*n+j]=(a[i*n+j]+a[j*n+i])/2.;
-      a[j*n+i]=a[i*n+j];
+    {                 
+      a[i*n+j]=(a[i*n+j]+a[j*n+i])/2.;//тут нужно не делить на 2, а умножать на 0.5, так быстрее.
+      a[j*n+i]=a[i*n+j];//тут 5 обращений к памяти, а можно 4(ну тип перменную ввести)
+      // тут компилятор сам правит, если бы была прогу чуть лсожнее, то не смог бы
+      // т.к. a[i*n+j] между первой и второй строчкой поменялся бы.
+      // тут все в одну строчку решалось бы черз множкственное присваевание.
+      // a[j*n+i]=a[i*n+j]=(a[i*n+j]+a[j*n+i])*0.5;
+      // читать хуже, но чем сложнее формула, тем болше компилятор может нашаманить 
+      //и тем в теории будет быстрее работать
     }
 }
 
@@ -104,12 +111,13 @@ void solution_5(double *a,int n)
   int i,j;
   for(i=0;i<n;i++)
     for(j=0;j<i;j++)
-    {                 //mb tut if sdelat
+    {                 
       a[i*n+j]=(a[i*n+j]-a[j*n+i])/2.;
-      a[j*n+i]=-1*a[i*n+j];
+      a[j*n+i]=-1*a[i*n+j];//можно было -(a[i*n+j]) унарная видимо быстрее
     }
-  for(i=0;i<n;i++)
-    a[i*n+i]=0;
+  for(i=0;i<n;i++)//тут цикл не нужен, так было бы быстрее.
+    a[i*n+i]=0;// т.к. процесор быстрее работае с продряд иддущими элементами
+    //(т.к. обращаеться к памяти ну по эти словам там или как там они)
 }
 
 void solution_6(double *a,int n,int m,int i,int j)
@@ -167,28 +175,70 @@ void solution_9(double *a,double *b,double *c,int n,int m)
     q=a+i*m;
     for(j=0;j<m;j++)
     {
-      summ+=q[j]*b[j];
+      summ+=q[j]*b[j];// короче тут я все верно сделал, т.к. сумма в регистри и работает быстрее
     }
     c[i]=summ;
+//мой алгоритм рабоает за 2nm+n обращений к памяти, а если без summ(как в 10), то за 4mm
+
+/*
+ +-* -2 такта
+ / 30-100 такотов
+  обращенрие к памяти 100-200
+
+  компелятор видит что s локальная пременная и 
+  что она живет только в этой функции
+  Он не может заменить c[i] на s, т.к. он боитьсячто c иожет
+  измениться(указывать на а или b)
+
+
+*/
   }  
 }
 
 void solution_10(double *a,double *b,double *c,int n,int m,int k)
 { 
   int i,j,l;
-  double *q,*p,*d,summ;
+  double *q,*p,*d;
 
   for(i=0;i<n;i++)
+  {
     q=a+i*m;
     d=c+i*n;
     for(j=0;j<k;j++)
     {
-      summ=0;
+      d[j]=0;// тут нужно было дкелать черз summ тогда вместо 4х обращений было бы 2
       p=b+j;
       for(l=0;l<m;l++)
       {
-        summ+=q[l]*(p[l*k]);
+        d[j]+=q[l]*(p[l*k]);
       }
-      d[j]=summ;
-    }  
+    }
+  }  
 }
+
+/*
+1) Эфективность
+2) Память
+
+норма ||.||: R^n->R
+1)||x||=0 <=> x=0
+2) ||a*x||=|a|*||x||
+3) ||x+y||<=||x||+||y||
+
+Для матриц
+A э Mn(R)
+1) ||A||=0 <=>  A=0
+2) ||aA||=|a|*||A||
+3) ||A+B|| <= ||A||+||B||
+4) ||A*B|| <= ||A||*||B||
+
+||A||=max(||Ax||/||x||)
+
+
+Если Ax*=b - точное решение
+то x будет приближоным решение если ||x-x*||
+||Ax-b|| еорма невязки.
+
+
+
+*/

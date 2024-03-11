@@ -54,9 +54,8 @@ int main(int argc,char *argv[])
   t=clock();
   res=solution_1(a,n);
   t=(clock()-t)/CLOCKS_PER_SEC;
-  printf("Result matrix:\n");
+  printf("Result:\n");
   print_matrix(&res,1,1,1);
-  //print_matrix(a,n,n,p);
   printf ("%s : Task = %d Elapsed = %.2f\n",argv[0], task, t);
   free(a);
   return SUCCESS;

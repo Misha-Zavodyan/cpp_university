@@ -11,7 +11,7 @@ CComplexVector::CComplexVector(double m[N],double n[N])
    }
 }
 
-int CComplexVector::Input(const char *name, vector <CComplexVector *> &v)
+int CComplexVector::Input(const char *name, vector <CComplexVector *> &v, vector<CFabric *> &fabric)
 {
 	ifstream f(name); string str;
 	while (getline(f, str))
@@ -23,7 +23,7 @@ int CComplexVector::Input(const char *name, vector <CComplexVector *> &v)
       
 			if (fabs(stod(*it) - 1) < eps)
 			{
-				CComplexVector1 *w = new CComplexVector1; size_t i; ++it;
+				CComplexVector *w = fabric[0] -> Create(); size_t i; ++it;
         w->fn= *it;++it;
         ofstream out(w->fn.c_str(), ios_base :: trunc);
         out.close();
@@ -39,7 +39,7 @@ int CComplexVector::Input(const char *name, vector <CComplexVector *> &v)
 			}
 			if (fabs(stod(*it) - 2) < eps)
 			{
-				CComplexVector2 *w = new CComplexVector2; size_t i; ++it; 
+				CComplexVector *w = fabric[1] -> Create(); size_t i; ++it; 
         w->fn= *it;++it;
         ofstream out(w->fn.c_str(), ios_base :: trunc);
         out.close();

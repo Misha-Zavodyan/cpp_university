@@ -1,49 +1,46 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
+#include "str_io.h"
 
 int main(int argc,char *argv[])
 {
-
-  FILE* fin,*fout;
+  FILE *fin,*fout;
   int i,len,task,res,backsl,flag;
   double t;
-  char* s,* bufs,procs[100000];
+  char* s,* bufs,*name1,*name2,*s,procs[LEN];
 
   task=1;
   i=0;    
   len=0;
-  t=clock();
+  name1=argv[1];
+  name2=argv[2];
+  s=argv[3];
+
   if (argc!=4)
   {
-    t=(clock()-t)/CLOCKS_PER_SEC;
-    printf ("%s : Task = %d Result = %d Elapsed = %.2f\n", argv[0], task, res, t);
-    return -1;
+    printf("Usege: %s c n p name \n",argv[0]);
+    return ERROR_ARGUMENT;
   }
   
-  if (!(fin=fopen(argv[1],"r")))
-  {
-    t=(clock()-t)/CLOCKS_PER_SEC;
-    printf ("%s : Task = %d Result = %d Elapsed = %.2f\n", argv[0], task, res, t);
-    return -2;
-  }
+  // if (!(fin=fopen(name1,"r")))
+  // {
+  //   printf("Can't open %s! \n",name1);
+  //   return ERROR_OPEN;
+  // }
 
-  if (!(fout=fopen(argv[2],"w")))
-  {
-    t=(clock()-t)/CLOCKS_PER_SEC;
-    printf ("%s : Task = %d Result = %d Elapsed = %.2f\n", argv[0], task, res, t);
-    return -2;
-  }
+  // if (!(fout=fopen(name2,"w")))
+  // {
+  //   printf("Can't open %s! \n",name2);
+  //   return ERROR_OPEN;
+  // }
   
   
-  while(argv[3][i]!='\0')
-  {
-    if(argv[3][i]!='\\')
-    {
-      len++;
-    }
-    i++;
-  }
+  // while(s[i]!='\0')
+  // {
+  //   if(s[i]!='\\')
+  //   {
+  //     len++;
+  //   }
+  //   i++;
+  // }
   
   bufs = (char*)malloc((len + 1)* sizeof(char));
   s = (char*)malloc((len + 1)* sizeof(char));
@@ -95,7 +92,7 @@ int main(int argc,char *argv[])
   }
   bufs[len]=0;
   s[len]=0; 
-  while(fgets(procs,100000,fin)!=NULL)
+  while(fgets(procs,LEN,fin)!=NULL)
   {
     i=0;
     flag=1;
