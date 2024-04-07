@@ -1,12 +1,13 @@
 #include "CComplexVector.h"
 using namespace std;
 
-CComplexVector::CComplexVector(double m[N],double n[N])
+CComplexVector::CComplexVector(double M)
 {
+  (void)M;
   for(size_t i=0;i<N;i++)
    {
-    this->Re[i]=m[i];
-    this->Im[i]=n[i];
+    this->Re[i]=rand();
+    this->Im[i]=rand();
    }
 }
 
@@ -55,31 +56,85 @@ int CComplexVector::Input(const char *name, vector <CComplexVector *> &v, vector
 }
 
 
-CComplexVector1 operator-(const CComplexVector &x1, const CComplexVector &x2) 
+CComplexVector* CComplexVector1::operator+( CComplexVector *x1) 
 {
-  CComplexVector1 res;
-   # pragma omp for                                            
-    for(size_t i=0;i<N;i++)
-      {
-      res.Re[i]=x1.Re[i]+x2.Re[i];
-      res.Im[i]=x1.Im[i]+x2.Im[i];          
-      }
-      //res.output("1.txt");
-  //}    
-    return res;
   
+  CComplexVector1* res=new CComplexVector1;
+  auto start = chrono::high_resolution_clock::now();
+   #pragma omp parallel for                                            
+    for(size_t i=0;i<N;i++)
+      for(size_t j=0;j<40000;j++)
+      {
+        res->Re[i]=Re[i]+x1->Re[i];
+        res->Im[i]=Im[i]+x1->Im[i];          
+      }
+    auto end = chrono::high_resolution_clock::now();
+
+    std::cout << "parallel in: " << chrono::duration<double>(end - start).count() << " s\n" << endl;
+    return res; 
 }
 
-CComplexVector2 operator+(const CComplexVector &x1, const CComplexVector &x2) 
+CComplexVector* CComplexVector2::operator+( CComplexVector *x1) 
 {
-  CComplexVector2 res;                                               
+  
+  CComplexVector2* res=new CComplexVector2;                                               
+  auto start = chrono::high_resolution_clock::now();                                           
   for(size_t i=0;i<N;i++)
+    for(size_t j=0;j<40000;j++)
     {
-     res.Re[i]=x1.Re[i]+x2.Re[i];
-     res.Im[i]=x1.Im[i]+x2.Im[i];          
+      res->Re[i]=Re[i]+x1->Re[i];
+      res->Im[i]=Im[i]+x1->Im[i];          
     }
-    //res.output("2.txt");
+  auto end = chrono::high_resolution_clock::now();
+
+  std::cout << "unparallel in: " << chrono::duration<double>(end - start).count() << " s\n" << endl;
   return res;
+}
+
+CComplexVector* CComplexVector::operator+( CComplexVector *x1) 
+{
+  CComplexVector *res;
+  auto start = chrono::high_resolution_clock::now();
+   #pragma omp parallel for                                            
+    for(size_t i=0;i<N;i++)
+      for(size_t j=0;j<40000;j++)
+      {
+        res->Re[i]=Re[i]+x1->Re[i];
+        res->Im[i]=Im[i]+x1->Im[i];          
+      }
+    auto end = chrono::high_resolution_clock::now();
+
+    std::cout << "parallel in: " << chrono::duration<double>(end - start).count() << " s\n" << endl;
+    return res; 
+}
+
+CComplexVector& CComplexVector::operator=(const CComplexVector& vector)
+{
+  if (this == &vector)
+    return *this;
+
+  for(size_t i=0;i<N;i++)
+  {
+    Re[i]=vector.Re[i];
+    Im[i]=vector.Im[i];          
+  }
+
+  return *this;
+}
+
+CComplexVector& CComplexVector :: operator=(CComplexVector&& vector)
+{
+  if (this == &vector)
+    return *this;
+
+  
+  for(size_t i=0;i<N;i++)
+  {
+    Re[i]=vector.Re[i];
+    Im[i]=vector.Im[i];          
+  }
+
+  return *this;
 }
 
 float operator*(const CComplexVector &x1,const CComplexVector &x2)

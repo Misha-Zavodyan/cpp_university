@@ -14,6 +14,9 @@
 #include <math.h>
 #include <omp.h>
 #include <time.h>
+#include <chrono>
+#include <memory>
+#include <algorithm>
 #define eps 1e-20
 #define N 100000
 
@@ -27,14 +30,31 @@ class CComplexVector
   public:
   double Re[N];
   double Im[N];
-  //string fn;
-  CComplexVector(){memset(Re, 0, sizeof(Re));memset(Im, 0, sizeof(Im));}
-  CComplexVector(double Re[N],double Im[N]);
+  CComplexVector(){for(size_t i=0;i<N;i++){this->Re[i]=0;this->Im[i]=0;}}
+  CComplexVector(double M);
   virtual ~CComplexVector(){cout << "";}
+  CComplexVector(const CComplexVector &v)
+  {
+    for(size_t i=0;i<N;i++)
+    {
+      Re[i]=v.Re[i];
+      Im[i]=v.Im[i];          
+    }
+  }
+  CComplexVector(CComplexVector &&v)
+  {
+    for(size_t i=0;i<N;i++)
+    {
+      Re[i]=v.Re[i];
+      Im[i]=v.Im[i];          
+    }
+  }
   double &operator[] (size_t i) {return Re[i];}
   double &operator() (size_t i) {return Im[i];}
+  virtual CComplexVector* operator+( CComplexVector* x1);
   void Show(){cout  << "[";for(size_t i=0;i<N;i++){cout <<""<< Re[i]<< "+"<<Im[i]<<"i";if(i<(N-1)) cout <<", ";}cout  << "]\n";}       
-  //virtual void output( string FileName=NULL)=0;
+  CComplexVector& operator=(const CComplexVector& vector);
+  CComplexVector& operator=(CComplexVector&& vector);
   static int Input(const char *name, vector <CComplexVector *> &v, vector<CFabric *> &fabric);
 
 };
@@ -50,8 +70,12 @@ class CComplexVector1 : public CComplexVector
 {
   public:
   CComplexVector1(): CComplexVector(){}
-	CComplexVector1(double Re[N],double Im[N]): CComplexVector( Re, Im){}
+	CComplexVector1(double M): CComplexVector( M){}
+  CComplexVector1(CComplexVector& v) : CComplexVector(v) {};
   ~CComplexVector1() {cout << "";}
+  CComplexVector1(const CComplexVector1 &v) : CComplexVector(v) {};
+  CComplexVector1(CComplexVector1&& v) : CComplexVector(v) {};
+  CComplexVector* operator+( CComplexVector* x1);
   //void output( string FileName);
   CComplexVector1 &operator= (const CComplexVector &b) {if (this != &b) {for (int i=0; i < N; i++) {Re[i] = b.Re[i];Im[i] = b.Re[i];}} return *this;}
 };
@@ -60,8 +84,12 @@ class CComplexVector2 : public CComplexVector
 {
   public:
   CComplexVector2(): CComplexVector(){}
-	CComplexVector2(double Re[N],double Im[N]): CComplexVector( Re, Im){}
+	CComplexVector2(double M): CComplexVector( M){}
+  CComplexVector2(CComplexVector& v) : CComplexVector(v) {};
   ~CComplexVector2() {cout << "";}
+  CComplexVector2(const CComplexVector2 &v) : CComplexVector(v) {};
+  CComplexVector2(CComplexVector2&& v) : CComplexVector(v) {};
+  CComplexVector* operator+( CComplexVector* x1);
   //void output( string FileName);
   CComplexVector2 &operator= (const CComplexVector &b) {if (this != &b) {for (int i=0; i < N; i++) {Re[i] = b.Re[i];Im[i] = b.Re[i];}} return *this;}
 };
@@ -78,8 +106,6 @@ class CFabric2 : public CFabric
 	virtual CComplexVector *Create(){return new CComplexVector2;}         
 };
 
-CComplexVector1 operator-(const CComplexVector &x1, const CComplexVector &x2) ;
-CComplexVector2 operator+(const CComplexVector &x1, const CComplexVector &x2) ;
 float operator*(const CComplexVector &x1,const CComplexVector &x2);
 float operator/(const CComplexVector &x1,const CComplexVector &x2);                             
  

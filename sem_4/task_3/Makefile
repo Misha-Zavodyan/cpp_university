@@ -1,4 +1,4 @@
-FLAGS= -O3 -g -fopenmp 
+FLAGS= -g -fopenmp 
 
 a.out: main.o CComplexVector.o
 	g++ -fopenmp main.o CComplexVector.o 

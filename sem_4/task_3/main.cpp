@@ -5,57 +5,42 @@ using namespace std;
 
 int main()
 {  
-  double t,a,b;    
+  double t,a,b,M=1;    
   vector<CComplexVector *> v; 
   CComplexVector1 cl,child1;
   CComplexVector2 child2;
+  CComplexVector *ss1=new CComplexVector(M),*ss2;
   vector<CFabric *> fabric;
   fabric.push_back(new CFabric1);
 	fabric.push_back(new CFabric2);
 	CComplexVector::Input("data.txt", v,fabric);
-	cout << "File input test" << endl << endl;
+	CComplexVector2* w2=new CComplexVector2(*v[0]), *w3=new CComplexVector2(*v[1]);
+ // CComplexVector1* f2(M), f3(M);
 
-	//for (size_t i = 0; i < v.size(); ++i) v[i]->Show();
-
-  cout << "2+3: \n";
-  //(*v[1]).Show();
-  //(*v[2]).Show();
-  t=clock();
-  child2 = (*v[2]) + (*v[3]);
-  t=(clock()-t);
-  printf ("Elapsed = %.2f clock\n", t);
- // child2.Show();
-  cout << "\n" << endl;
-
-  cout << "2-3: \n";
-  //(*v[2]).Show();
-  //(*v[3]).Show();
-  t=clock();
-  child1 = (*v[2]) - (*v[3]);
-  t=(clock()-t);
-  printf ("Elapsed = %.2f clock\n", t);
- // child1.Show();
-  cout << "\n" << endl;
   
-  cout << "2*3: \n";
-  //(*v[2]).Show();
-  //(*v[3]).Show();
-  t=clock();
-  a = (*v[2])* (*v[3]);
-  t=(clock()-t);
-  printf ("Elapsed = %.2f clock\n", t);
- // child1.Show();
-  cout << "\n" << endl;
+  
+  
 
-  cout << "2/3: \n";
-  t=clock();
-  b = (*v[2])/ (*v[3]);
-  t=(clock()-t);
-  printf ("Elapsed = %.2f clock\n", t);
-  cout << "\n" << endl;
+  ss1 = *w2 + w3;
+  ss2 = (*v[0])+v[1];
+ 
+  
+  // cout << "2*3: \n";
+  // t=clock();
+  // a = (*v[2])* (*v[3]);
+  // t=(clock()-t);
+  // printf ("Elapsed = %.2f clock\n", t);
+  // cout << "\n" << endl;
 
-  if (fabs(a-b)<eps*(fabs(a)+fabs(b)))
-      cout << "* == /" << endl;
+  // cout << "2/3: \n";
+  // t=clock();
+  // b = (*v[2])/ (*v[3]);
+  // t=(clock()-t);
+  // printf ("Elapsed = %.2f clock\n", t);
+  // cout << "\n" << endl;
+
+  // if (fabs(a-b)<eps*(fabs(a)+fabs(b)))
+  //     cout << "* == /" << endl;
 
   if ((fabs(child1[1]-child2[1])<eps)&&
   (fabs(child1[3]-child2[3])<eps) &&
