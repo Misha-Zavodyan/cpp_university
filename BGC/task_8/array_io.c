@@ -84,11 +84,13 @@ int read_matrix(double *a,int n,int m, char * name)
 
 
 
-double r(double *a,double *x,int n)
+double r(double *a,double *x,int n,double *d)
 { //max(for col)||A*B-E|| (B=A^(-1))
   int i,j,k,shift,shift2,shift3,shiftx;
-  double tmp;
+  double tmp,maxi;
   double *q,*b,*p,*x1,*a1;
+  maxi=-1;
+  for(i=0;i<n;i++)d[i]=0;
   if(n<=4000)
   {
     shift=0;
@@ -106,30 +108,23 @@ double r(double *a,double *x,int n)
         a1=a+j*(n-1)-shiftx+j+i-j;
         if(j<i)
         {
-          // printf("0 i:%d j:%d x1:%lf a1:%lf\n",i,j,x1[0],a1[0]);
           shift3=0;
           for(k=0;k<j;k++)
           {
             shift3+=n-j+k;
             tmp+=x1[-shift3]*a1[-shift3];
-            // printf("1 i:%d j:%d k:%d x1:%lf a1:%lf -s3:%d x1[k]:%lf a1[k]:%lf\n",i,j,k,
-            // x1[0],a1[0],-shift3,x1[-shift3],a1[-shift3]);
           }
           shift3=0;
           x1-=j;
           for(k=j;k<i;k++)
           {
             tmp+=x1[k]*a1[shift3];
-            // printf("2 i:%d j:%d k:%d x1:%lf a1:%lf -s3:%d x1[k]:%lf a1[k]:%lf\n",i,j,k,
-            // x1[0],a1[0],shift3,x1[k],a1[shift3]);
             shift3+=n-k-1;
           }
           
           for(k=i;k<n;k++)
           { 
             tmp+=x1[k]*q[k];
-            // printf("3  i:%d j:%d k:%d x1:%lf q:%lf x1[k]:%lf q[k]:%lf\n",
-            // i,j,k,x1[0],q[0],x1[k],q[k]);
           }
           x1+=j;
         }
@@ -143,34 +138,36 @@ double r(double *a,double *x,int n)
           {
             shift3+=n-i+k;
             tmp+=q[-shift3]*p[-shift3];
-            // printf("1 i:%d j:%d k:%d q:%d p:%d -s3:%d q[k]:%lf p[k]:%lf\n",i,j,k,i*(n-1)-shift+i,i*(n-1)-shift+j,-shift3,q[-shift3],p[-shift3]);
           }
           shift3=0;
           q-=i;
           for(k=i;k<j;k++)
           {
             tmp+=q[k]*p[shift3];
-            // printf("2 i:%d j:%d k:%d q:%d p:%d s3:%d q[k]:%lf p[k]:%lf\n",i,j,k,i*(n-1)-shift,i*(n-1)-shift+j,shift3,q[k],p[shift3]);
             shift3+=n-k-1;
           }
           for(k=j;k<n;k++)
           { 
             tmp+=q[k]*b[k];
-            //printf("3  i:%d j:%d k:%d q:%lf b:%lf q[k]:%lf b[k]:%lf\n",i,j,k,q[0],b[0],q[k],b[k]);
           }
           shift2-=1;
           b+=shift2;
-        }
-        
-
-          
-        printf(" %f",tmp);
+        } 
+        // printf(" %f",tmp);
+        if(j==i)
+          tmp-=1;
+        d[j]+=fabs(tmp);
         shiftx+=j;
       }
-      printf("\n");
+      // printf("\n");
       shift+=i;
     }
-    return SUCCESS;
+    for(i=0;i<n;i++)
+    {
+      if(d[i]>maxi)
+      maxi=d[i];
+    }
+    return maxi;
   }
   else
     return 0;
@@ -224,10 +221,10 @@ int choleski_location(double *a,double *d,int n,double epsilon)
       shift2+=k;
     }     
     (r_ii<epsilon) ? (d[i]=-1) : (d[i]=1);
-    r_ii=fabs(r_ii);
-    r_ii=sqrt(r_ii);
-    q[i]=r_ii;
-    if(r_ii<epsilon)
+    //r_ii=fabs(r_ii);
+    // r_ii=sqrt(r_ii);
+    // q[i]=r_ii;
+    if(fabs(r_ii)<epsilon)//убрвть fabs 
       return -1;
 
     //search for elements of the upper triangle
@@ -241,10 +238,13 @@ int choleski_location(double *a,double *d,int n,double epsilon)
         tmp-=d[k]*p[step]*b[step];
         step-=k;
       }
-      tmp/=(d_i*r_ii);//mb a=1./d[i]*r_ii?
+      tmp/=(d_i*sqrt(r_ii));//mb a=1./d[i]*r_ii?
       q[j]=tmp;
       
     }
+    r_ii=fabs(r_ii);
+    r_ii=sqrt(r_ii);
+    q[i]=r_ii;
     shift+=i;
   }
   return SUCCESS;
@@ -324,7 +324,6 @@ int solution_1(double *a,double *x,int n,double *d)
   res= choleski_location(a,d,n,epsilon);
   if(res==-1)
     return -1;
-  //(void)x;
   res= gaussian_method(a,x,n,epsilon);
   if(res==-1)
     return -1;
