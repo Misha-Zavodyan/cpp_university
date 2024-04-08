@@ -77,7 +77,7 @@ int main(int argc,char *argv[])
   t=(clock()-t)/CLOCKS_PER_SEC;
   if(ret==-1)
   {
-    printf("Bad matrix \n");
+    printf("Division by zero!\nCannot use Cholesky method.\n");
     free(a);
     free(x);
     free(d);

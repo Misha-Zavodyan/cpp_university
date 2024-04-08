@@ -222,9 +222,9 @@ int choleski_location(double *a,double *d,int n,double epsilon)
     }     
     (r_ii<epsilon) ? (d[i]=-1) : (d[i]=1);
     r_ii=fabs(r_ii);
-    r_ii=sqrt(r_ii);
-    q[i]=r_ii;
-    if(fabs(r_ii)<epsilon)//убрвть fabs 
+    // r_ii=sqrt(r_ii);
+    // q[i]=r_ii;
+    if(r_ii<epsilon)//убрвть fabs 
       return -1;
 
     //search for elements of the upper triangle
@@ -238,13 +238,13 @@ int choleski_location(double *a,double *d,int n,double epsilon)
         tmp-=d[k]*p[step]*b[step];
         step-=k;
       }
-      tmp/=(d_i*r_ii);//mb a=1./d[i]*r_ii?
+      tmp/=(d_i*sqrt(r_ii));//mb a=1./d[i]*r_ii?
       q[j]=tmp;
       
     }
     // r_ii=fabs(r_ii);
-    // r_ii=sqrt(r_ii);
-    // q[i]=r_ii;
+    r_ii=sqrt(r_ii);
+    q[i]=r_ii;
     shift+=i;
   }
   return SUCCESS;
@@ -323,8 +323,8 @@ int solution_1(double *a,double *x,int n,double *d)
   epsilon=eps*norm;
   res= choleski_location(a,d,n,epsilon);
   //(void)x;
-  printf("Chol mat \n");
-  print_matrix(a,n,n,5);
+  // printf("Chol mat \n");
+  // print_matrix(a,n,n,5);
   if(res==-1)
     return -1;
   res= gaussian_method(a,x,n,epsilon);
