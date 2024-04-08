@@ -86,9 +86,9 @@ int read_matrix(double *a,int n,int m, char * name)
 
 double r(double *a,double *x,int n)
 { //max(for col)||A*B-E|| (B=A^(-1))
-  int i,j,k,shift,shift2,shift3;
+  int i,j,k,shift,shift2,shift3,shiftx;
   double tmp;
-  double *q,*b,*p;
+  double *q,*b,*p,*x1,*a1;
   if(n<=4000)
   {
     shift=0;
@@ -96,17 +96,47 @@ double r(double *a,double *x,int n)
     {
       q=a+i*(n-1)-shift;
       shift2=n-i;
-      //b=q;
       b=x+i*(n-1)-shift;
+      shiftx=0;
+
       for(j=0;j<n;j++)
       {
         tmp=0;
-        //p=q+j;
+        x1=x+j*(n-1)-shiftx+j;
+        a1=a+j*(n-1)-shiftx+j+i-j;
         if(j<i)
+        {
+          // printf("0 i:%d j:%d x1:%lf a1:%lf\n",i,j,x1[0],a1[0]);
+          shift3=0;
+          for(k=0;k<j;k++)
+          {
+            shift3+=n-j+k;
+            tmp+=x1[-shift3]*a1[-shift3];
+            // printf("1 i:%d j:%d k:%d x1:%lf a1:%lf -s3:%d x1[k]:%lf a1[k]:%lf\n",i,j,k,
+            // x1[0],a1[0],-shift3,x1[-shift3],a1[-shift3]);
+          }
+          shift3=0;
+          x1-=j;
+          for(k=j;k<i;k++)
+          {
+            tmp+=x1[k]*a1[shift3];
+            // printf("2 i:%d j:%d k:%d x1:%lf a1:%lf -s3:%d x1[k]:%lf a1[k]:%lf\n",i,j,k,
+            // x1[0],a1[0],shift3,x1[k],a1[shift3]);
+            shift3+=n-k-1;
+          }
+          
+          for(k=i;k<n;k++)
+          { 
+            tmp+=x1[k]*q[k];
+            // printf("3  i:%d j:%d k:%d x1:%lf q:%lf x1[k]:%lf q[k]:%lf\n",
+            // i,j,k,x1[0],q[0],x1[k],q[k]);
+          }
+          x1+=j;
+        }
+        else
         {
           p=x+i*(n-1)-shift+j;
           q+=i;
-          //b+=j;
           
           shift3=0;
           for(k=0;k<i;k++)
@@ -119,7 +149,6 @@ double r(double *a,double *x,int n)
           q-=i;
           for(k=i;k<j;k++)
           {
-            
             tmp+=q[k]*p[shift3];
             // printf("2 i:%d j:%d k:%d q:%d p:%d s3:%d q[k]:%lf p[k]:%lf\n",i,j,k,i*(n-1)-shift,i*(n-1)-shift+j,shift3,q[k],p[shift3]);
             shift3+=n-k-1;
@@ -131,75 +160,12 @@ double r(double *a,double *x,int n)
           }
           shift2-=1;
           b+=shift2;
-          // //p=x+i*(n-1)-shift+j;
-          // //y=a+j*(n-1)-shift+i;
-          // //q+=i;
-          // q+=j;
-          // b+=i;
-          
-          // shift3=0;
-          // for(k=0;k<j;k++)
-          // {
-          //   shift3+=n-i+k;
-          //   tmp+=b[-shift3]*q[-shift3];
-          //   printf("1 i:%d j:%d k:%d b:%d q:%d -s3:%d b[k]:%lf q[k]:%lf\n",i,j,k,
-          //   i*(n-1)-shift+i,i*(n-1)-shift+i,-shift3,b[-shift3],y[-shift3]);
-          // }
-          // shift3=0;
-          // // q-=i;
-          // b-=i;
-          // for(k=j;k<i;k++)
-          // {
-            
-          //   tmp+=b[k]*y[shift3];
-          //   printf("2 i:%d j:%d k:%d b:%d y:%d s3:%d b[k]:%lf y[k]:%lf\n",i,j,k,
-          //   i*(n-1)-shift,j*(n-1)-shift+i,shift3,b[k],y[shift3]);
-          //   shift3+=n-k-1;
-          // }
-          
-          // for(k=i;k<n;k++)
-          // { 
-          //   tmp+=b[k]*q[k];
-          //   printf("3  i:%d j:%d k:%d b:%lf q:%lf b[k]:%lf q[k]:%lf\n",i,j,k,
-          //   q[0],b[0],b[k],q[k]);
-          // }
-          // shift2-=1;
-          // b+=shift2;
-        }
-        else
-        {
-          // p=x+i*(n-1)-shift+j;
-          // q+=i;
-          // //b+=j;
-          
-          // shift3=0;
-          // for(k=0;k<i;k++)
-          // {
-          //   shift3+=n-i+k;
-          //   tmp+=q[-shift3]*p[-shift3];
-          //   // printf("1 i:%d j:%d k:%d q:%d p:%d -s3:%d q[k]:%lf p[k]:%lf\n",i,j,k,i*(n-1)-shift+i,i*(n-1)-shift+j,-shift3,q[-shift3],p[-shift3]);
-          // }
-          // shift3=0;
-          // q-=i;
-          // for(k=i;k<j;k++)
-          // {
-            
-          //   tmp+=q[k]*p[shift3];
-          //   // printf("2 i:%d j:%d k:%d q:%d p:%d s3:%d q[k]:%lf p[k]:%lf\n",i,j,k,i*(n-1)-shift,i*(n-1)-shift+j,shift3,q[k],p[shift3]);
-          //   shift3+=n-k-1;
-          // }
-          // for(k=j;k<n;k++)
-          // { 
-          //   tmp+=q[k]*b[k];
-          //   //printf("3  i:%d j:%d k:%d q:%lf b:%lf q[k]:%lf b[k]:%lf\n",i,j,k,q[0],b[0],q[k],b[k]);
-          // }
-          // shift2-=1;
-          // b+=shift2;
         }
         
 
           
         printf(" %f",tmp);
+        shiftx+=j;
       }
       printf("\n");
       shift+=i;
@@ -208,34 +174,6 @@ double r(double *a,double *x,int n)
   }
   else
     return 0;
-  // int i,j,l;
-  // double *q,*p,summ,summ_col,max_summ_col;
-  // if(n<=4000)
-  // {
-  //   max_summ_col=-1;
-  //   for(i=0;i<n;i++)
-  //   {
-  //     p=b+i;
-  //     summ_col=0;
-  //     for(j=0;j<n;j++)
-  //     {
-  //       summ=0;
-        
-  //       q=a+j*n;
-  //       for(l=0;l<n;l++)
-  //       {
-  //         summ+=q[l]*(p[l*n]);
-  //       }
-  //       summ_col+=fabs(summ);
-  //     }
-  //     summ_col=fabs(summ_col-1);
-  //     if (summ_col>max_summ_col)
-  //       max_summ_col=summ_col;
-  //   }  
-  //   return max_summ_col;
-  // }
-  // else
-  //   return 0;
 }
 
 double matrix_norm(double *a,int n)
@@ -348,35 +286,6 @@ int gaussian_method(double *a,double *x,int n,double epsilon)
 
   return SUCCESS;
 }
-
-// int matrix_mult(double *a,double *d,int n)
-// {
-//   int i,j,k,shift,step;
-//   double tmp;
-//   double *q,*p,*b;
-//   shift=0;
-//   for(i=0;i<n;i++)
-//     shift+=i;
-//   for(i=n;i>0;i--)
-//   {
-//     q=a+i*n-shift-1;
-//     p=a+i-1; 
-//     for(j=0;j<n-i+1;j++)
-//     {
-//       tmp=0;
-//       b=a+(n-j-1);
-//       printf("i:%d j:%d b:%d a:%d\n",i,j,(n-j-1),i*n-shift-1);
-//       for(k=0,step=0;k<i;k++,step+=(n-1))
-//       {
-//         tmp+=d[k]*p[step]*b[step];
-//         step-=k;
-//       }
-//       q[-j]=tmp;  
-//     }
-//     shift-=(i-1);
-//   }
-//   return SUCCESS;
-// }
 
 int matrix_mult(double *a,double *d,int n)
 {
