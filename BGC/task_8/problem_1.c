@@ -15,7 +15,7 @@ int main(int argc,char *argv[])
     printf("Usege: %s n p k (name) \n",argv[0]);
     return ERROR_ARGUMENT;
   }
-
+  name_a=0;
   if(k_a==0)
   {
     name_a = argv[4];

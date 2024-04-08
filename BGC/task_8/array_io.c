@@ -207,9 +207,12 @@ int choleski_location(double *a,double *d,int n,double epsilon)
   double tmp,r_ii,d_i;
   double *q,*p,*b;
   shift=0;
+  (void)shift;
+  q=a;
   for(i=0;i<n;i++)
   {
-    q=a+i*(n-1)-shift;
+    //q=a+i*(n-1)-shift;
+    
     //search for diagonal elements
     r_ii=q[i];
     p=a+i; 
@@ -217,7 +220,7 @@ int choleski_location(double *a,double *d,int n,double epsilon)
     for(k=0;k<(i);k++) //tak lushe rabotaet hz poch
     {
       step=k*(n-1)-shift2;
-      r_ii-=d[k]*p[step]*p[step];
+      r_ii-=d[k]*p[step]*p[step];//mb убрать r_ii
       shift2+=k;
     }     
     (r_ii<epsilon) ? (d[i]=-1) : (d[i]=1);
@@ -231,7 +234,7 @@ int choleski_location(double *a,double *d,int n,double epsilon)
     d_i=d[i];
     for(j=i+1;j<n;j++)
     {
-      tmp=q[j];
+      tmp=q[j];//mb убрать tmp
       b=a+j;
       for(k=0,step=0;k<i;k++,step+=(n-1))
       {
@@ -242,10 +245,9 @@ int choleski_location(double *a,double *d,int n,double epsilon)
       q[j]=tmp;
       
     }
-    // r_ii=fabs(r_ii);
-    r_ii=sqrt(r_ii);
-    q[i]=r_ii;
-    shift+=i;
+    q[i]=sqrt(r_ii);
+    //shift+=i;
+    q+=n-1-i;
   }
   return SUCCESS;
 }
