@@ -85,7 +85,6 @@ int main(int argc,char *argv[])
   }
   printf("Result matrix A^(-1):\n");
   print_matrix(x,n,n,p);
-
   if(k_a==0){
     ret=read_matrix(a,n,n,name_a);
   } else {
@@ -117,6 +116,7 @@ int main(int argc,char *argv[])
   "%s : Task = %d Res1 = %e Res2 = %e Elapsed = %.2f K = %d N = %d\n",
   argv[0], task, r1, r2, t, k_a, n);
   free(a);
+  
   free(x);
   free(d);
   return SUCCESS;
