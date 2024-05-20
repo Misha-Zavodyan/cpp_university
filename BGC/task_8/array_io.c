@@ -88,7 +88,8 @@ double r(double *a,double *x,int n,double *d)
   double tmp,maxi;
   double *q,*b,*p,*x1,*a1;
   maxi=-1;
-  for(i=0;i<n;i++)d[i]=0;
+  for(i=0;i<n;i++)
+    d[i]=0;
   if(n<=4000)
   {
     shift=0;
@@ -125,6 +126,7 @@ double r(double *a,double *x,int n,double *d)
             tmp+=x1[k]*q[k];
           }
           x1+=j;
+
         }
         else
         {
@@ -151,10 +153,12 @@ double r(double *a,double *x,int n,double *d)
           shift2-=1;
           b+=shift2;
         } 
-        // printf(" %f",tmp);
-        // if(j==i)
-        //   tmp-=1;
-        d[j]+=fabs(tmp);
+        //printf("%d %d %.16f \n",i,j,tmp);
+        if(j==i)
+          tmp-=1;
+        printf("%d %d %.16f \n",i,j,tmp);
+        d[i]+=fabs(tmp);
+        printf("d[i] %d %d %.16f \n",i,j,d[i]);
         shiftx+=j;
       }
       // printf("\n");
@@ -162,10 +166,15 @@ double r(double *a,double *x,int n,double *d)
     }
     for(i=0;i<n;i++)
     {
+      printf("%d  %.16f \n",i,d[i]);
       if(d[i]>maxi)
-      maxi=d[i];
+      {
+        maxi=d[i];
+        printf("123\n");
+      }
+        
     }
-    return maxi-1;//так нельзя делать может
+    return maxi;//так нельзя делать может
   }
   else
     return 0;
@@ -218,7 +227,7 @@ int choleski_location(double *a,double *d,int n,double epsilon)
     for(k=0;k<(i);k++) //tak lushe rabotaet hz poch
     {
       step=k*(n-1)-shift2;
-      r_ii-=d[k]*p[step]*p[step];//mb убрать r_ii
+      r_ii-=p[step]*p[step]*d[k];//mb убрать r_ii
       shift2+=k;
     }     
     (r_ii<epsilon) ? (d[i]=-1) : (d[i]=1);
@@ -240,14 +249,16 @@ int choleski_location(double *a,double *d,int n,double epsilon)
         tmp+=tmp_1;
         step-=k;
       }
-      ttt=q[j]/(d_i*sqrt(r_ii));
+      // ttt=q[j]/(d_i*sqrt(r_ii));
       // q[j]/=(d_i*sqrt(r_ii));
-       q[j]=ttt-tmp/(d_i*sqrt(r_ii));
-      //tmp/=(d_i*sqrt(r_ii));//mb a=1./d[i]*r_ii?
-      //q[j]=tmp;
+      //  q[j]=ttt-tmp/(d_i*sqrt(r_ii));
+      tmp/=(d_i*sqrt(r_ii));//mb a=1./d[i]*r_ii?
+      q[j]=-tmp+q[j]/(d_i*sqrt(r_ii));
+      // printf(" %.16f \n",q[j]);
       
     }
     q[i]=sqrt(r_ii);
+    // printf(" %.16f \n",q[i]);
     //shift+=i;
     q+=n-1-i;
   }
@@ -308,50 +319,12 @@ int choleski_location(double *a,double *d,int n,double epsilon)
 //   return SUCCESS;
 // }
 
-// int gaussian_method(double *a,double *x,int n,double epsilon)
-// {// в начале приведем к 1 на диоганали а потом будем манипулировать.
-//   int i,j,k,shift,shift2,additive,shift_j,shift_k; 
-//   double *q;
-//   double *y;
-//   double r_jj,tmp,s;
-//   shift=0;
-//   for(i=0;i<n;i++)
-//   {
-//     q=a+i*(n-1)-shift; // можно тут без shift mb меньше опреаций
-//     y=x+i*(n-1)-shift;
-//     if(q[i]<epsilon)
-//       return -1;
-//     y[i]=1./q[i];
-//     shift_j=n-i-1;
-//     for(j=i+1;j<n;j++)
-//     {
-//       // printf("i:%d j:%d s_j:%d q_jj: %d\n",i,j,shift_j,(i*(n-1)-shift+j+shift_j));
-//       r_jj=q[j+shift_j];
-//       s=0;
-//       shift_k=0;
-//       for(k=i;k<j;k++)
-//       {
-//         // printf(" i:%d j:%d k:%d y_ik: %d q_kj: %d\n",i,j,k,i*(n-1)-shift+k,i*(n-1)-shift+shift_k+j);
-//         tmp=-y[k]*q[shift_k+j];
-//         s+=tmp/r_jj;
-//         shift_k+=n-k-1;
-//       }
-//       // printf("  i:%d j:%d y_ij: %d\n",i,j,i*(n-1)-shift+j);
-//       y[j]=s;
-//       shift_j+=n-j-1;
-//     }
-//     shift+=i;
-//   }
-//   return SUCCESS;
-// }
-
-
-
 int gaussian_method(double *a,double *x,int n,double epsilon)
 {// в начале приведем к 1 на диоганали а потом будем манипулировать.
-  int i,j,k,shift,shift2,additive; 
+  int i,j,k,shift,shift2,additive,shift_j,shift_k; 
   double *q;
   double *y;
+  double r_jj,tmp,s;
   shift=0;
   for(i=0;i<n;i++)
   {
@@ -360,30 +333,71 @@ int gaussian_method(double *a,double *x,int n,double epsilon)
     if(q[i]<epsilon)
       return -1;
     y[i]=1./q[i];
+    // printf(" %.16f \n",y[i]);
+    shift_j=n-i-1;
     for(j=i+1;j<n;j++)
     {
-      y[j]=-q[j]/q[i]; // записывем вместо 0 -q[j]/q[i] это столбец под диаганальным элемнтом
-      shift2=j;
-      additive=-j+i;
-      for(k=i;k>0;k--)
+      // printf("i:%d j:%d s_j:%d q_jj: %d\n",i,j,shift_j,(i*(n-1)-shift+j+shift_j));
+      r_jj=q[j+shift_j];
+      s=0;
+      shift_k=0;
+      for(k=i;k<j;k++)
       {
-        shift2-=(n-k);
-        printf(" 2 y+s2:%d y+s2+a:%d\n",i*(n-1)-shift+shift2,i*(n-1)-shift+shift2+additive);
-        y[shift2]-=y[additive+shift2]/q[i]*q[j]; // вычетаем из остальных столбцое строчку
+        // printf(" i:%d j:%d k:%d y_ik: %d q_kj: %d\n",i,j,k,i*(n-1)-shift+k,i*(n-1)-shift+shift_k+j);
+        tmp=-y[k]*q[shift_k+j];
+        s+=tmp;
+        shift_k+=n-k-1;
       }
-    }
-    shift2=i; //деление всей строчки на q[i]
-    for(k=i;k>0;k--)
-    {
-      shift2-=(n-k);
-      printf("1 %d \n",i*(n-1)-shift+shift2);
-      y[shift2]/=q[i];
+      // printf("  i:%d j:%d y_ij: %d\n",i,j,i*(n-1)-shift+j);
+      
+      y[j]=s/r_jj;
+      // printf(" %.16f \n",y[j]);
+      shift_j+=n-j-1;
     }
     shift+=i;
   }
-
   return SUCCESS;
 }
+
+
+
+// int gaussian_method(double *a,double *x,int n,double epsilon)
+// {// в начале приведем к 1 на диоганали а потом будем манипулировать.
+//   int i,j,k,shift,shift2,additive; 
+//   double *q;
+//   double *y;
+//   shift=0;
+//   for(i=0;i<n;i++)
+//   {
+//     q=a+i*(n-1)-shift; // можно тут без shift mb меньше опреаций
+//     y=x+i*(n-1)-shift;
+//     if(q[i]<epsilon)
+//       return -1;
+//     y[i]=1./q[i];
+//     for(j=i+1;j<n;j++)
+//     {
+//       y[j]=-q[j]/q[i]; // записывем вместо 0 -q[j]/q[i] это столбец под диаганальным элемнтом
+//       shift2=j;
+//       additive=-j+i;
+//       for(k=i;k>0;k--)
+//       {
+//         shift2-=(n-k);
+//         printf(" 2 y+s2:%d y+s2+a:%d\n",i*(n-1)-shift+shift2,i*(n-1)-shift+shift2+additive);
+//         y[shift2]-=y[additive+shift2]/q[i]*q[j]; // вычетаем из остальных столбцое строчку
+//       }
+//     }
+//     shift2=i; //деление всей строчки на q[i]
+//     for(k=i;k>0;k--)
+//     {
+//       shift2-=(n-k);
+//       printf("1 %d \n",i*(n-1)-shift+shift2);
+//       y[shift2]/=q[i];
+//     }
+//     shift+=i;
+//   }
+
+//   return SUCCESS;
+// }
 
 
 int matrix_mult(double *a,double *d,int n)
@@ -405,11 +419,11 @@ int matrix_mult(double *a,double *d,int n)
         tmp+=q[k]*b[k]*d[k];
       }
       q[j]=tmp;
-      // printf(" %17f",tmp);
+      printf(" %.16f",tmp);
       shift2-=1;
       b+=shift2;  
     }
-    // printf("\n-------------------------------------------\n");
+    printf("\n-------------------------------------------\n");
     shift+=i;
   }
   return SUCCESS;

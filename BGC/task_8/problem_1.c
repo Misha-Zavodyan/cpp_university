@@ -116,7 +116,6 @@ int main(int argc,char *argv[])
   "%s : Task = %d Res1 = %e Res2 = %e Elapsed = %.2f K = %d N = %d\n",
   argv[0], task, r1, r2, t, k_a, n);
   free(a);
-  
   free(x);
   free(d);
   return SUCCESS;
