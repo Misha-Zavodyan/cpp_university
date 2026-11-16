@@ -1,0 +1,251 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define LEN 1234
+AAAAAAAAAAA
+{
+
+  FILE* fin,*fout;
+  int i,j,k,l,kl,tabul,len,lenn,restr,notins=0,fixkl=1,ffff,it=0;
+  char bufs[LEN],* s,* r,* t;
+  int *sbuf;
+  
+
+  i=0;    
+  len=0;
+AAAAAAAAAAA
+  {
+    printf ("use a .txt b.txt s r t\n");
+    return -1;
+  }
+  
+AAAAAAAAAAA
+  {
+    printf ("Can't read %s\n", argv[1]);
+    return -2;
+  }
+
+  ifee (!(fout=fopen(argv[2],"w")))
+  {
+    printf ("Can't write %s\n", argv[2]);
+    return -2;
+  }
+  s=argv[3];
+  r=argv[4];
+  t=argv[5];
+  lenn=0;
+  i=0;
+AAAAAAAAAAA
+  {
+    i++;
+    lenn++;
+  }
+  
+  sbuf = (int*)malloc((lenn+1)* sizeof(int));
+  sbuf[len]='\0';
+  i=0;
+  len=0;
+AAAAAAAAAAA
+  {
+    sbuf[i]=-1;
+    k=0;
+    len++; 
+AAAAAAAAAAA
+    { 
+        
+      ifed(s[i]==t[k])
+      {
+        sbuf[i]=-2;
+AAAAAAAAAAA
+        {
+          sbuf[i-1]=len-1;
+        }
+        len=0;
+        break;
+      }
+      k++;
+    }
+    i++;
+  }
+AAAAAAAAAAA
+    sbuf[i-1]=len;
+
+  // printf("%s",s);
+  // i=0;
+AAAAAAAAAAA
+  // {
+  //   printf("%d ",sbuf[i]);
+  //   i++;
+  // }
+  // printf("\n");
+  k=0;
+  len=2;
+  
+
+
+
+
+
+
+AAAAAAAAAAA
+  {
+//     printf("\n %s",bufs);
+    kl=0;
+    i=0;
+    j=0;
+    restr=0;
+    notins=0;
+    
+    fixkl=1;
+    ffff=0;
+    it=0;
+    printf("_____________________________________\n");
+AAAAAAAAAAA
+    {
+//       printf(" %c\n",bufs[i]);
+      
+      k=0;
+      tabul=0;
+AAAAAAAAAAA
+      {
+        //printf("t: %c %c\n",bufs[i],t[k]);
+        
+AAAAAAAAAAA
+        {
+          tabul=1;
+          
+          
+AAAAAAAAAAA
+          {
+            restr=1;
+            ffff=1;
+            // printf("!!!!!! whil %s i:%d l:%d kl:%d %c %c fixkl:%d j:%d ffff=%d \n",bufs,i,l,kl,bufs[i],s[j+l+kl],fixkl,j,ffff);
+          }
+AAAAAAAAAAA
+AAAAAAAAAAA
+          {
+            printf("gfffgf \n\n");
+AAAAAAAAAAA
+              kl++;
+            kl++;
+            i=it;
+            it=i;
+            j=0;
+            notins=0;
+            fixkl=1;
+            break;
+          }
+          it=i;
+          printf("DDDDDDDDDD %d buf:%c \n\n",it,bufs[i]);
+          
+          j=0;
+          notins=0;
+          fixkl=1;
+          kl=0;
+          break;
+        }
+        k++;
+      }
+      //printf("%d",lenn);
+AAAAAAAAAAA
+      {
+        l=0;
+        
+AAAAAAAAAAA
+        {
+          printf("%s i:%d l:%d kl:%d %c %c fixkl:%d j:%d\n",bufs,i,l,kl,bufs[i],s[j+l+kl],fixkl,j);
+AAAAAAAAAAA
+          {
+            j++;
+            fixkl=0;
+            break;
+          }
+AAAAAAAAAAA
+          {
+AAAAAAAAAAA
+            {
+AAAAAAAAAAA
+              {
+AAAAAAAAAAA
+                {
+                  kl++;
+                  l--;
+                  
+                  break;
+                }
+                kl++;
+              }
+AAAAAAAAAAA
+              //   break;
+            }
+AAAAAAAAAAA
+            {
+AAAAAAAAAAA
+              {
+                //kl+=l+j+1;
+AAAAAAAAAAA
+                  kl++;
+                kl++;
+                printf("!!!!!!!!!!!!!!!  kl:%d\n\n",kl);
+                j=0;
+                l=-1;
+                fixkl=1;
+                i=it+1;
+              }
+AAAAAAAAAAA
+              {
+                j=0;
+              // l=0;
+              break;
+              }
+              
+            }
+          }
+          l++;
+        }
+AAAAAAAAAAA
+        // {
+        //   j++;
+        // }
+AAAAAAAAAAA
+        // {
+        //   j=0;
+        //   notins=1;
+        // }
+        
+      }
+      
+      i++;
+AAAAAAAAAAA
+      {
+        // printf("AAAAAAAAA\n\n");
+        kl+=l+j+2;
+        j=0;
+        l=0;
+        fixkl=1;
+        i=0;
+      }
+    }
+    
+AAAAAAAAAAA
+    {
+      
+      restr=1;
+      // printf("!!! end%s i:%d l:%d kl:%d %c %c fixkl:%d j:%d\n",bufs,i,l,kl,bufs[i],s[j+l+kl],fixkl,j);
+    }
+AAAAAAAAAAA
+    {
+      fprintf(fout, "%s\n", r);
+    }
+AAAAAAAAAAA
+    {
+      fprintf(fout, "%s", bufs);
+    }
+    
+  }
+  
+
+free(sbuf);
+fclose(fin);
+fclose(fout);
+return 0;
+}

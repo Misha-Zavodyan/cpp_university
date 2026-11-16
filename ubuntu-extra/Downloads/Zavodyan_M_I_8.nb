@@ -1,0 +1,1118 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     45088,       1108]
+NotebookOptionsPosition[     44602,       1091]
+NotebookOutlinePosition[     44999,       1107]
+CellTagsIndexPosition[     44956,       1104]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{" ", 
+  RowBox[{"(*", 
+   RowBox[{
+   "\:0417\:0430\:0447\:0435\:0442\:043d\:0430\:044f", " ", 
+    "\:0437\:0430\:0434\:0430\:0447\:0430", " ", "8"}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"a", "=", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0"}], "}"}]}], ";", 
+    RowBox[{"b", "=", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "0"}], "}"}]}], ";", 
+    RowBox[{"c", "=", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "1"}], "}"}]}], ";"}], "\[IndentingNewLine]", "  ", 
+   RowBox[{
+   "Manipulate", "[", "\[IndentingNewLine]", 
+    "                                                   ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"x", "=", 
+       RowBox[{"Sqrt", "[", "  ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{
+             RowBox[{
+             "pt", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], 
+             "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], "-", 
+            RowBox[{
+             RowBox[{
+             "pt", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], 
+             "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]}], ")"}], 
+          "^", "2"}], "+", " ", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{
+             RowBox[{
+             "pt", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], 
+             "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], "-", 
+            RowBox[{
+             RowBox[{
+             "pt", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], 
+             "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}]}], ")"}], 
+          "^", "2"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+      "                                                   ", 
+      RowBox[{"y", "=", 
+       RowBox[{"Sqrt", "[", "  ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{
+             RowBox[{
+             "pt", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], 
+             "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], "-", 
+            RowBox[{
+             RowBox[{
+             "pt", "\[LeftDoubleBracket]", "3", "\[RightDoubleBracket]"}], 
+             "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]}], ")"}], 
+          "^", "2"}], "+", " ", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{
+             RowBox[{
+             "pt", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], 
+             "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], "-", 
+            RowBox[{
+             RowBox[{
+             "pt", "\[LeftDoubleBracket]", "3", "\[RightDoubleBracket]"}], 
+             "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}]}], ")"}], 
+          "^", "2"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+      "                                                   ", 
+      RowBox[{"z", "=", 
+       RowBox[{"Sqrt", "[", "  ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{
+             RowBox[{
+             "pt", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], 
+             "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], "-", 
+            RowBox[{
+             RowBox[{
+             "pt", "\[LeftDoubleBracket]", "3", "\[RightDoubleBracket]"}], 
+             "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]}], ")"}], 
+          "^", "2"}], "+", " ", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{
+             RowBox[{
+             "pt", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], 
+             "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], "-", 
+            RowBox[{
+             RowBox[{
+             "pt", "\[LeftDoubleBracket]", "3", "\[RightDoubleBracket]"}], 
+             "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}]}], ")"}], 
+          "^", "2"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+      "                                                   ", 
+      RowBox[{"p", "=", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "/", "2"}], ")"}], "*", 
+        RowBox[{"(", 
+         RowBox[{"x", "+", "y", "+", "z"}], ")"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      "                                                   ", 
+      RowBox[{"r1", "=", 
+       RowBox[{"Sqrt", "[", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"p", "-", "x"}], ")"}], "*", 
+         RowBox[{"(", 
+          RowBox[{"p", "-", "y"}], ")"}], "*", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"p", "-", "z"}], ")"}], "/", "p"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      "                                                   ", 
+      RowBox[{"r2", "=", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"x", "*", "y", "*", "z"}], ")"}], "/", 
+        RowBox[{"(", 
+         RowBox[{"4", "*", 
+          RowBox[{"Sqrt", "[", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"p", "-", "x"}], ")"}], "*", 
+            RowBox[{"(", 
+             RowBox[{"p", "-", "y"}], ")"}], "*", 
+            RowBox[{"(", 
+             RowBox[{"p", "-", "z"}], ")"}], "*", "p"}], "]"}]}], ")"}]}]}], 
+      ";", "\[IndentingNewLine]", 
+      "                                                   ", 
+      RowBox[{"q1", "=", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{
+               RowBox[{
+               "pt", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], 
+               "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], "+", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"x", "/", "z"}], ")"}], "*", 
+               RowBox[{
+                RowBox[{
+                "pt", "\[LeftDoubleBracket]", "3", "\[RightDoubleBracket]"}], 
+                "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]}]}], 
+             ")"}], "/", 
+            RowBox[{"(", 
+             RowBox[{"1", "+", 
+              RowBox[{"(", 
+               RowBox[{"x", "/", "z"}], ")"}]}], ")"}]}], ")"}], "+", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"y", "/", 
+             RowBox[{"(", 
+              RowBox[{"z", "+", "x"}], ")"}]}], ")"}], "*", 
+           RowBox[{
+            RowBox[{
+            "pt", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], 
+            "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]}]}], ")"}],
+         "/", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          RowBox[{"(", 
+           RowBox[{"y", "/", 
+            RowBox[{"(", 
+             RowBox[{"z", "+", "x"}], ")"}]}], ")"}]}], ")"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      "                                                   ", 
+      RowBox[{"q2", "=", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{
+               RowBox[{
+               "pt", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], 
+               "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], "+", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"x", "/", "z"}], ")"}], "*", 
+               RowBox[{
+                RowBox[{
+                "pt", "\[LeftDoubleBracket]", "3", "\[RightDoubleBracket]"}], 
+                "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}]}]}], 
+             ")"}], "/", 
+            RowBox[{"(", 
+             RowBox[{"1", "+", 
+              RowBox[{"(", 
+               RowBox[{"x", "/", "z"}], ")"}]}], ")"}]}], ")"}], "+", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"y", "/", 
+             RowBox[{"(", 
+              RowBox[{"z", "+", "x"}], ")"}]}], ")"}], "*", 
+           RowBox[{
+            RowBox[{
+            "pt", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], 
+            "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}]}]}], ")"}],
+         "/", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          RowBox[{"(", 
+           RowBox[{"y", "/", 
+            RowBox[{"(", 
+             RowBox[{"z", "+", "x"}], ")"}]}], ")"}]}], ")"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      "                                                   ", 
+      RowBox[{"O1", "=", 
+       RowBox[{"{", 
+        RowBox[{"q1", ",", "q2"}], "}"}]}], ";", "\[IndentingNewLine]", 
+      "                                                    ", 
+      RowBox[{"M", "=", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"t", "*", 
+           RowBox[{
+            RowBox[{
+            "pt", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], 
+            "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]}], "+", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"1", "-", "t"}], ")"}], "*", 
+           RowBox[{
+            RowBox[{
+            "pt", "\[LeftDoubleBracket]", "3", "\[RightDoubleBracket]"}], 
+            "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]}]}], ",", 
+         RowBox[{
+          RowBox[{"t", "*", 
+           RowBox[{
+            RowBox[{
+            "pt", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], 
+            "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}]}], "+", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"1", "-", "t"}], ")"}], "*", 
+           RowBox[{
+            RowBox[{
+            "pt", "\[LeftDoubleBracket]", "3", "\[RightDoubleBracket]"}], 
+            "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}]}]}]}], 
+        "}"}]}], ";", "\[IndentingNewLine]", "                     ", 
+      RowBox[{"Sol", "=", 
+       RowBox[{"Solve", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{
+                 "pt", "\[LeftDoubleBracket]", "3", "\[RightDoubleBracket]"}],
+                  "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], "-", 
+                RowBox[{
+                 RowBox[{
+                 "pt", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}],
+                  "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]}], 
+               ")"}], "*", 
+              RowBox[{"(", 
+               RowBox[{"w1", "-", 
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    "pt", "\[LeftDoubleBracket]", "1", 
+                    "\[RightDoubleBracket]"}], "\[LeftDoubleBracket]", "1", 
+                    "\[RightDoubleBracket]"}], "+", 
+                    RowBox[{
+                    RowBox[{
+                    "pt", "\[LeftDoubleBracket]", "3", 
+                    "\[RightDoubleBracket]"}], "\[LeftDoubleBracket]", "1", 
+                    "\[RightDoubleBracket]"}]}], ")"}], "/", "2"}], ")"}]}], 
+               ")"}]}], "+", 
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{
+                 "pt", "\[LeftDoubleBracket]", "3", "\[RightDoubleBracket]"}],
+                  "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], "-", 
+                RowBox[{
+                 RowBox[{
+                 "pt", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}],
+                  "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}]}], 
+               ")"}], "*", 
+              RowBox[{"(", 
+               RowBox[{"w2", "-", 
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    "pt", "\[LeftDoubleBracket]", "1", 
+                    "\[RightDoubleBracket]"}], "\[LeftDoubleBracket]", "2", 
+                    "\[RightDoubleBracket]"}], "+", 
+                    RowBox[{
+                    RowBox[{
+                    "pt", "\[LeftDoubleBracket]", "3", 
+                    "\[RightDoubleBracket]"}], "\[LeftDoubleBracket]", "2", 
+                    "\[RightDoubleBracket]"}]}], ")"}], "/", "2"}], ")"}]}], 
+               ")"}]}]}], "==", "0"}], ",", 
+           RowBox[{
+            RowBox[{
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{
+                 "pt", "\[LeftDoubleBracket]", "3", "\[RightDoubleBracket]"}],
+                  "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], "-", 
+                RowBox[{
+                 RowBox[{
+                 "pt", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}],
+                  "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]}], 
+               ")"}], "*", 
+              RowBox[{"(", 
+               RowBox[{"w1", "-", 
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    "pt", "\[LeftDoubleBracket]", "2", 
+                    "\[RightDoubleBracket]"}], "\[LeftDoubleBracket]", "1", 
+                    "\[RightDoubleBracket]"}], "+", 
+                    RowBox[{
+                    RowBox[{
+                    "pt", "\[LeftDoubleBracket]", "3", 
+                    "\[RightDoubleBracket]"}], "\[LeftDoubleBracket]", "1", 
+                    "\[RightDoubleBracket]"}]}], ")"}], "/", "2"}], ")"}]}], 
+               ")"}]}], "+", 
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{
+                 "pt", "\[LeftDoubleBracket]", "3", "\[RightDoubleBracket]"}],
+                  "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], "-", 
+                RowBox[{
+                 RowBox[{
+                 "pt", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}],
+                  "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}]}], 
+               ")"}], "*", 
+              RowBox[{"(", 
+               RowBox[{"w2", "-", 
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    "pt", "\[LeftDoubleBracket]", "2", 
+                    "\[RightDoubleBracket]"}], "\[LeftDoubleBracket]", "2", 
+                    "\[RightDoubleBracket]"}], "+", 
+                    RowBox[{
+                    RowBox[{
+                    "pt", "\[LeftDoubleBracket]", "3", 
+                    "\[RightDoubleBracket]"}], "\[LeftDoubleBracket]", "2", 
+                    "\[RightDoubleBracket]"}]}], ")"}], "/", "2"}], ")"}]}], 
+               ")"}]}]}], "==", "0"}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"w1", ",", "w2"}], "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      "                                                   ", 
+      RowBox[{"O2", "=", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"w1", ",", "w2"}], "}"}], "/.", 
+        RowBox[{
+        "Sol", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]}]}], 
+      ";", "\[IndentingNewLine]", 
+      "                                                   ", 
+      RowBox[{"V", "=", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+          "pt", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], 
+          "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], ",", 
+         RowBox[{
+          RowBox[{
+          "pt", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], 
+          "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}]}], "}"}]}], 
+      ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"U", "=", 
+       RowBox[{"{", "      ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{
+              "M", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], 
+              "-", 
+              RowBox[{
+               RowBox[{
+               "pt", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], 
+               "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]}], 
+             ")"}], "/", 
+            RowBox[{"Sqrt", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{
+                 "M", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], 
+                 "-", 
+                 RowBox[{
+                  RowBox[{
+                  "pt", "\[LeftDoubleBracket]", "1", 
+                   "\[RightDoubleBracket]"}], "\[LeftDoubleBracket]", "1", 
+                  "\[RightDoubleBracket]"}]}], ")"}], "^", "2"}], "+", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{
+                 "M", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], 
+                 "-", 
+                 RowBox[{
+                  RowBox[{
+                  "pt", "\[LeftDoubleBracket]", "1", 
+                   "\[RightDoubleBracket]"}], "\[LeftDoubleBracket]", "2", 
+                  "\[RightDoubleBracket]"}]}], ")"}], "^", "2"}]}], "]"}]}], 
+           ")"}], "+", "  ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{
+              "M", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], 
+              "-", 
+              RowBox[{
+               RowBox[{
+               "pt", "\[LeftDoubleBracket]", "3", "\[RightDoubleBracket]"}], 
+               "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]}], 
+             ")"}], "/", 
+            RowBox[{"Sqrt", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{
+                 "M", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], 
+                 "-", 
+                 RowBox[{
+                  RowBox[{
+                  "pt", "\[LeftDoubleBracket]", "3", 
+                   "\[RightDoubleBracket]"}], "\[LeftDoubleBracket]", "1", 
+                  "\[RightDoubleBracket]"}]}], ")"}], "^", "2"}], "+", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{
+                 "M", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], 
+                 "-", 
+                 RowBox[{
+                  RowBox[{
+                  "pt", "\[LeftDoubleBracket]", "3", 
+                   "\[RightDoubleBracket]"}], "\[LeftDoubleBracket]", "2", 
+                  "\[RightDoubleBracket]"}]}], ")"}], "^", "2"}]}], "]"}]}], 
+           ")"}]}], "      ", ",", "  ", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{
+              "M", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], 
+              "-", 
+              RowBox[{
+               RowBox[{
+               "pt", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], 
+               "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}]}], 
+             ")"}], "/", 
+            RowBox[{"Sqrt", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{
+                 "M", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], 
+                 "-", 
+                 RowBox[{
+                  RowBox[{
+                  "pt", "\[LeftDoubleBracket]", "1", 
+                   "\[RightDoubleBracket]"}], "\[LeftDoubleBracket]", "1", 
+                  "\[RightDoubleBracket]"}]}], ")"}], "^", "2"}], "+", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{
+                 "M", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], 
+                 "-", 
+                 RowBox[{
+                  RowBox[{
+                  "pt", "\[LeftDoubleBracket]", "1", 
+                   "\[RightDoubleBracket]"}], "\[LeftDoubleBracket]", "2", 
+                  "\[RightDoubleBracket]"}]}], ")"}], "^", "2"}]}], "]"}]}], 
+           ")"}], "+", "  ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{
+              "M", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], 
+              "-", 
+              RowBox[{
+               RowBox[{
+               "pt", "\[LeftDoubleBracket]", "3", "\[RightDoubleBracket]"}], 
+               "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}]}], 
+             ")"}], "/", 
+            RowBox[{"Sqrt", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{
+                 "M", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], 
+                 "-", 
+                 RowBox[{
+                  RowBox[{
+                  "pt", "\[LeftDoubleBracket]", "3", 
+                   "\[RightDoubleBracket]"}], "\[LeftDoubleBracket]", "1", 
+                  "\[RightDoubleBracket]"}]}], ")"}], "^", "2"}], "+", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{
+                 "M", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], 
+                 "-", 
+                 RowBox[{
+                  RowBox[{
+                  "pt", "\[LeftDoubleBracket]", "3", 
+                   "\[RightDoubleBracket]"}], "\[LeftDoubleBracket]", "2", 
+                  "\[RightDoubleBracket]"}]}], ")"}], "^", "2"}]}], "]"}]}], 
+           ")"}]}]}], "              ", "}"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"U2", "=", 
+       RowBox[{"{", "      ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{
+              "M", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], 
+              "-", 
+              RowBox[{
+               RowBox[{
+               "pt", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], 
+               "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]}], 
+             ")"}], "/", 
+            RowBox[{"Sqrt", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{
+                 "M", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], 
+                 "-", 
+                 RowBox[{
+                  RowBox[{
+                  "pt", "\[LeftDoubleBracket]", "1", 
+                   "\[RightDoubleBracket]"}], "\[LeftDoubleBracket]", "1", 
+                  "\[RightDoubleBracket]"}]}], ")"}], "^", "2"}], "+", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{
+                 "M", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], 
+                 "-", 
+                 RowBox[{
+                  RowBox[{
+                  "pt", "\[LeftDoubleBracket]", "1", 
+                   "\[RightDoubleBracket]"}], "\[LeftDoubleBracket]", "2", 
+                  "\[RightDoubleBracket]"}]}], ")"}], "^", "2"}]}], "]"}]}], 
+           ")"}], "+", "  ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{
+              "M", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], 
+              "-", 
+              RowBox[{
+               RowBox[{
+               "pt", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], 
+               "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]}], 
+             ")"}], "/", 
+            RowBox[{"Sqrt", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{
+                 "M", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], 
+                 "-", 
+                 RowBox[{
+                  RowBox[{
+                  "pt", "\[LeftDoubleBracket]", "2", 
+                   "\[RightDoubleBracket]"}], "\[LeftDoubleBracket]", "1", 
+                  "\[RightDoubleBracket]"}]}], ")"}], "^", "2"}], "+", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{
+                 "M", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], 
+                 "-", 
+                 RowBox[{
+                  RowBox[{
+                  "pt", "\[LeftDoubleBracket]", "2", 
+                   "\[RightDoubleBracket]"}], "\[LeftDoubleBracket]", "2", 
+                  "\[RightDoubleBracket]"}]}], ")"}], "^", "2"}]}], "]"}]}], 
+           ")"}]}], "      ", ",", "  ", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{
+              "M", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], 
+              "-", 
+              RowBox[{
+               RowBox[{
+               "pt", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], 
+               "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}]}], 
+             ")"}], "/", 
+            RowBox[{"Sqrt", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{
+                 "M", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], 
+                 "-", 
+                 RowBox[{
+                  RowBox[{
+                  "pt", "\[LeftDoubleBracket]", "1", 
+                   "\[RightDoubleBracket]"}], "\[LeftDoubleBracket]", "1", 
+                  "\[RightDoubleBracket]"}]}], ")"}], "^", "2"}], "+", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{
+                 "M", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], 
+                 "-", 
+                 RowBox[{
+                  RowBox[{
+                  "pt", "\[LeftDoubleBracket]", "1", 
+                   "\[RightDoubleBracket]"}], "\[LeftDoubleBracket]", "2", 
+                  "\[RightDoubleBracket]"}]}], ")"}], "^", "2"}]}], "]"}]}], 
+           ")"}], "+", "  ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{
+              "M", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], 
+              "-", 
+              RowBox[{
+               RowBox[{
+               "pt", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], 
+               "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}]}], 
+             ")"}], "/", 
+            RowBox[{"Sqrt", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{
+                 "M", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], 
+                 "-", 
+                 RowBox[{
+                  RowBox[{
+                  "pt", "\[LeftDoubleBracket]", "2", 
+                   "\[RightDoubleBracket]"}], "\[LeftDoubleBracket]", "1", 
+                  "\[RightDoubleBracket]"}]}], ")"}], "^", "2"}], "+", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{
+                 "M", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], 
+                 "-", 
+                 RowBox[{
+                  RowBox[{
+                  "pt", "\[LeftDoubleBracket]", "2", 
+                   "\[RightDoubleBracket]"}], "\[LeftDoubleBracket]", "2", 
+                  "\[RightDoubleBracket]"}]}], ")"}], "^", "2"}]}], "]"}]}], 
+           ")"}]}]}], "              ", "}"}]}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"A", "=", 
+       RowBox[{"pt", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]}],
+       ";", "\[IndentingNewLine]", 
+      RowBox[{"B", "=", 
+       RowBox[{"pt", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}]}],
+       ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"res", "=", 
+       RowBox[{"Solve", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"r2", "-", 
+           RowBox[{"Norm", "[", 
+            RowBox[{"O2", "-", "M", "+", 
+             RowBox[{"l", "*", "U"}]}], "]"}]}], "\[Equal]", 
+          RowBox[{"Sqrt", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Norm", "[", 
+              RowBox[{"l", "*", "U"}], "]"}], "^", "2"}], "-", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{"(", 
+                  RowBox[{"l", "*", "U"}], ")"}], ".", 
+                 RowBox[{"(", 
+                  RowBox[{"B", "-", "M"}], ")"}]}], ")"}], ")"}], "^", "2"}], 
+             "/", 
+             RowBox[{
+              RowBox[{"Norm", "[", 
+               RowBox[{"B", "-", "M"}], "]"}], "^", "2"}]}]}], "]"}]}], ",", 
+         "l"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"res4", "=", 
+       RowBox[{"Solve", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"r2", "-", 
+           RowBox[{"Norm", "[", 
+            RowBox[{"O2", "-", "M", "+", 
+             RowBox[{"l", "*", "U2"}]}], "]"}]}], "\[Equal]", 
+          RowBox[{"Sqrt", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Norm", "[", 
+              RowBox[{"l", "*", "U2"}], "]"}], "^", "2"}], "-", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{"(", 
+                  RowBox[{"l", "*", "U2"}], ")"}], ".", 
+                 RowBox[{"(", 
+                  RowBox[{"B", "-", "M"}], ")"}]}], ")"}], ")"}], "^", "2"}], 
+             "/", 
+             RowBox[{
+              RowBox[{"Norm", "[", 
+               RowBox[{"B", "-", "M"}], "]"}], "^", "2"}]}]}], "]"}]}], ",", 
+         "l"}], "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"\[Tau]", "=", 
+       RowBox[{"l", "/.", 
+        RowBox[{
+        "res", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}]}]}], 
+      ";", "\[IndentingNewLine]", 
+      RowBox[{"g", "=", 
+       RowBox[{"l", "/.", 
+        RowBox[{
+        "res4", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}]}]}], 
+      ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"O3", "=", 
+       RowBox[{"M", "-", 
+        RowBox[{"\[Tau]", "*", "U"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"O4", "=", 
+       RowBox[{"M", "-", 
+        RowBox[{"g", "*", "U2"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"r3", "=", 
+       RowBox[{"r2", "-", 
+        RowBox[{"Norm", "[", 
+         RowBox[{"O2", "-", "O3"}], "]"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"r4", "=", 
+       RowBox[{"r2", "-", 
+        RowBox[{"Norm", "[", 
+         RowBox[{"O2", "-", "O4"}], "]"}]}]}], ";", "\[IndentingNewLine]", 
+      "      ", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"Show", "[", " ", 
+       RowBox[{
+        RowBox[{"Graphics", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"Thick", ",", "Red", ",", 
+            RowBox[{"Line", "[", 
+             RowBox[{"{", 
+              RowBox[{"M", ",", "V"}], "}"}], "]"}], ",", "Black", ",", 
+            "Thin", ",", 
+            RowBox[{"Circle", "[", 
+             RowBox[{"O2", ",", "r2"}], "]"}], ",", "Green", ",", "Thick", 
+            ",", 
+            RowBox[{"Circle", "[", 
+             RowBox[{"O3", ",", "r3"}], "]"}], ",", "Red", ",", 
+            RowBox[{"Circle", "[", 
+             RowBox[{"O1", ",", "r1"}], "]"}], ",", "Blue", ",", 
+            RowBox[{"Circle", "[", 
+             RowBox[{"O4", ",", "r4"}], "]"}], ",", 
+            RowBox[{"EdgeForm", "[", 
+             RowBox[{"{", 
+              RowBox[{"Red", " ", ",", "Thick"}], "}"}], "]"}], ",", " ", 
+            RowBox[{"FaceForm", "[", "Transparent", "]"}], ",", 
+            RowBox[{"Polygon", "[", "pt", "]"}], ",", 
+            RowBox[{"PointSize", "[", "Large", "]"}], ",", "Blue", ",", 
+            RowBox[{"Point", "[", 
+             RowBox[{"{", 
+              RowBox[{"O3", ",", "O4"}], "}"}], "]"}], ",", "Red", ",", 
+            RowBox[{"Point", "[", "O1", "]"}], ",", "Green", ",", 
+            RowBox[{"Point", "[", "M", "]"}]}], "}"}], ",", 
+          RowBox[{"PlotRange", "->", "2"}]}], "]"}], ",", 
+        RowBox[{"ParametricPlot", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"T", "*", "O3"}], "+", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"1", "-", "T"}], ")"}], "*", "O4"}]}], ",", 
+          RowBox[{"{", 
+           RowBox[{"T", ",", 
+            RowBox[{"-", "100"}], ",", "100"}], "}"}]}], "]"}]}], "]"}]}], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"pt", ",", 
+         RowBox[{"{", 
+          RowBox[{"a", ",", "b", ",", "c"}], "}"}]}], "}"}], ",", " ", 
+       "Locator"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"t", ",", 
+         RowBox[{"1", "/", "2"}], ",", "\"\<M\>\""}], "}"}], ",", 
+       RowBox[{"10", "^", 
+        RowBox[{"(", 
+         RowBox[{"-", "8"}], ")"}]}], ",", 
+       RowBox[{"1", "-", 
+        RowBox[{"10", "^", 
+         RowBox[{"(", 
+          RowBox[{"-", "8"}], ")"}]}]}]}], "}"}]}], "]"}]}]}]], "Input",
+ CellLabel->"In[59]:=",ExpressionUUID->"66b619ff-fa69-49d8-9ef9-dc6a651802b0"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`pt$$ = {{0.31499999999999995`, 
+    1.9300000000000002`}, {
+    1.1800000000000002`, -0.1399999999999999}, {-0.7849999999999999, \
+-0.07000000000000006}}, $CellContext`t$$ = Rational[1, 2], Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`pt$$], {{0, 0}, {1, 0}, {1, 1}}}, Automatic}, {{
+       Hold[$CellContext`t$$], 
+       Rational[1, 2], "M"}, 
+      Rational[1, 100000000], 
+      Rational[99999999, 100000000]}}, Typeset`size$$ = {360., {178., 182.}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True}, 
+    
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`pt$$ = {{0, 0}, {1, 0}, {1, 
+         1}}, $CellContext`t$$ = Rational[1, 2]}, "ControllerVariables" :> {},
+       "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> ($CellContext`x = Sqrt[(Part[
+              Part[$CellContext`pt$$, 1], 1] - Part[
+             Part[$CellContext`pt$$, 2], 1])^2 + (Part[
+              Part[$CellContext`pt$$, 1], 2] - Part[
+             Part[$CellContext`pt$$, 2], 2])^2]; $CellContext`y = Sqrt[(Part[
+              Part[$CellContext`pt$$, 2], 1] - Part[
+             Part[$CellContext`pt$$, 3], 1])^2 + (Part[
+              Part[$CellContext`pt$$, 2], 2] - Part[
+             Part[$CellContext`pt$$, 3], 2])^2]; $CellContext`z = Sqrt[(Part[
+              Part[$CellContext`pt$$, 1], 1] - Part[
+             Part[$CellContext`pt$$, 3], 1])^2 + (Part[
+              Part[$CellContext`pt$$, 1], 2] - Part[
+             Part[$CellContext`pt$$, 3], 2])^2]; $CellContext`p = (1/
+          2) ($CellContext`x + $CellContext`y + $CellContext`z); \
+$CellContext`r1 = 
+        Sqrt[($CellContext`p - $CellContext`x) ($CellContext`p - \
+$CellContext`y) (($CellContext`p - $CellContext`z)/$CellContext`p)]; \
+$CellContext`r2 = ($CellContext`x $CellContext`y $CellContext`z)/(4 
+         Sqrt[($CellContext`p - $CellContext`x) ($CellContext`p - \
+$CellContext`y) ($CellContext`p - $CellContext`z) $CellContext`p]); \
+$CellContext`q1 = ((Part[
+              Part[$CellContext`pt$$, 2], 1] + ($CellContext`x/$CellContext`z)
+               Part[
+               Part[$CellContext`pt$$, 3], 1])/(
+           1 + $CellContext`x/$CellContext`z) + \
+($CellContext`y/($CellContext`z + $CellContext`x)) Part[
+             Part[$CellContext`pt$$, 1], 1])/(
+         1 + $CellContext`y/($CellContext`z + $CellContext`x)); \
+$CellContext`q2 = ((Part[
+              Part[$CellContext`pt$$, 2], 2] + ($CellContext`x/$CellContext`z)
+               Part[
+               Part[$CellContext`pt$$, 3], 2])/(
+           1 + $CellContext`x/$CellContext`z) + \
+($CellContext`y/($CellContext`z + $CellContext`x)) Part[
+             Part[$CellContext`pt$$, 1], 2])/(
+         1 + $CellContext`y/($CellContext`z + $CellContext`x)); \
+$CellContext`O1 = {$CellContext`q1, $CellContext`q2}; $CellContext`M = \
+{$CellContext`t$$ Part[
+             Part[$CellContext`pt$$, 2], 1] + (1 - $CellContext`t$$) Part[
+             Part[$CellContext`pt$$, 3], 1], $CellContext`t$$ Part[
+             Part[$CellContext`pt$$, 2], 2] + (1 - $CellContext`t$$) Part[
+             Part[$CellContext`pt$$, 3], 2]}; $CellContext`Sol = 
+        Solve[{(Part[
+                Part[$CellContext`pt$$, 3], 1] - Part[
+               Part[$CellContext`pt$$, 1], 1]) ($CellContext`w1 - (Part[
+                 Part[$CellContext`pt$$, 1], 1] + Part[
+                 Part[$CellContext`pt$$, 3], 1])/2) + (Part[
+                Part[$CellContext`pt$$, 3], 2] - Part[
+               Part[$CellContext`pt$$, 1], 2]) ($CellContext`w2 - (Part[
+                 Part[$CellContext`pt$$, 1], 2] + Part[
+                 Part[$CellContext`pt$$, 3], 2])/2) == 0, (Part[
+                Part[$CellContext`pt$$, 3], 1] - Part[
+               Part[$CellContext`pt$$, 2], 1]) ($CellContext`w1 - (Part[
+                 Part[$CellContext`pt$$, 2], 1] + Part[
+                 Part[$CellContext`pt$$, 3], 1])/2) + (Part[
+                Part[$CellContext`pt$$, 3], 2] - Part[
+               Part[$CellContext`pt$$, 2], 2]) ($CellContext`w2 - (Part[
+                 Part[$CellContext`pt$$, 2], 2] + Part[
+                 Part[$CellContext`pt$$, 3], 2])/2) == 
+           0}, {$CellContext`w1, $CellContext`w2}]; $CellContext`O2 = 
+        ReplaceAll[{$CellContext`w1, $CellContext`w2}, 
+          Part[$CellContext`Sol, 1]]; $CellContext`V = {
+          Part[
+           Part[$CellContext`pt$$, 1], 1], 
+          Part[
+           Part[$CellContext`pt$$, 1], 
+           2]}; $CellContext`U = {(Part[$CellContext`M, 1] - Part[
+             Part[$CellContext`pt$$, 1], 1])/
+           Sqrt[(Part[$CellContext`M, 1] - Part[
+               Part[$CellContext`pt$$, 1], 1])^2 + (Part[$CellContext`M, 2] - 
+              Part[
+               Part[$CellContext`pt$$, 1], 2])^2] + (Part[$CellContext`M, 1] - 
+            Part[
+             Part[$CellContext`pt$$, 3], 1])/
+           Sqrt[(Part[$CellContext`M, 1] - Part[
+               Part[$CellContext`pt$$, 3], 1])^2 + (Part[$CellContext`M, 2] - 
+              Part[
+               Part[$CellContext`pt$$, 3], 2])^2], (Part[$CellContext`M, 2] - 
+            Part[
+             Part[$CellContext`pt$$, 1], 2])/
+           Sqrt[(Part[$CellContext`M, 1] - Part[
+               Part[$CellContext`pt$$, 1], 1])^2 + (Part[$CellContext`M, 2] - 
+              Part[
+               Part[$CellContext`pt$$, 1], 2])^2] + (Part[$CellContext`M, 2] - 
+            Part[
+             Part[$CellContext`pt$$, 3], 2])/
+           Sqrt[(Part[$CellContext`M, 1] - Part[
+               Part[$CellContext`pt$$, 3], 1])^2 + (Part[$CellContext`M, 2] - 
+              Part[
+               Part[$CellContext`pt$$, 3], 2])^2]}; $CellContext`U2 = {(
+            Part[$CellContext`M, 1] - Part[
+             Part[$CellContext`pt$$, 1], 1])/
+           Sqrt[(Part[$CellContext`M, 1] - Part[
+               Part[$CellContext`pt$$, 1], 1])^2 + (Part[$CellContext`M, 2] - 
+              Part[
+               Part[$CellContext`pt$$, 1], 2])^2] + (Part[$CellContext`M, 1] - 
+            Part[
+             Part[$CellContext`pt$$, 2], 1])/
+           Sqrt[(Part[$CellContext`M, 1] - Part[
+               Part[$CellContext`pt$$, 2], 1])^2 + (Part[$CellContext`M, 2] - 
+              Part[
+               Part[$CellContext`pt$$, 2], 2])^2], (Part[$CellContext`M, 2] - 
+            Part[
+             Part[$CellContext`pt$$, 1], 2])/
+           Sqrt[(Part[$CellContext`M, 1] - Part[
+               Part[$CellContext`pt$$, 1], 1])^2 + (Part[$CellContext`M, 2] - 
+              Part[
+               Part[$CellContext`pt$$, 1], 2])^2] + (Part[$CellContext`M, 2] - 
+            Part[
+             Part[$CellContext`pt$$, 2], 2])/
+           Sqrt[(Part[$CellContext`M, 1] - Part[
+               Part[$CellContext`pt$$, 2], 1])^2 + (Part[$CellContext`M, 2] - 
+              Part[
+               Part[$CellContext`pt$$, 2], 2])^2]}; $CellContext`A = 
+        Part[$CellContext`pt$$, 1]; $CellContext`B = 
+        Part[$CellContext`pt$$, 2]; $CellContext`res = 
+        Solve[$CellContext`r2 - 
+           Norm[$CellContext`O2 - $CellContext`M + $CellContext`l \
+$CellContext`U] == 
+          Sqrt[Norm[$CellContext`l $CellContext`U]^2 - 
+            Dot[$CellContext`l $CellContext`U, $CellContext`B - \
+$CellContext`M]^2/
+            Norm[$CellContext`B - $CellContext`M]^2], $CellContext`l]; \
+$CellContext`res4 = 
+        Solve[$CellContext`r2 - 
+           Norm[$CellContext`O2 - $CellContext`M + $CellContext`l \
+$CellContext`U2] == 
+          Sqrt[Norm[$CellContext`l $CellContext`U2]^2 - 
+            Dot[$CellContext`l $CellContext`U2, $CellContext`B - \
+$CellContext`M]^2/
+            Norm[$CellContext`B - $CellContext`M]^2], $CellContext`l]; \
+$CellContext`\[Tau] = ReplaceAll[$CellContext`l, 
+          Part[$CellContext`res, 2]]; $CellContext`g = 
+        ReplaceAll[$CellContext`l, 
+          
+          Part[$CellContext`res4, 
+           2]]; $CellContext`O3 = $CellContext`M - $CellContext`\[Tau] \
+$CellContext`U; $CellContext`O4 = $CellContext`M - $CellContext`g \
+$CellContext`U2; $CellContext`r3 = $CellContext`r2 - 
+         Norm[$CellContext`O2 - $CellContext`O3]; $CellContext`r4 = \
+$CellContext`r2 - Norm[$CellContext`O2 - $CellContext`O4]; Show[
+         Graphics[{Thick, Red, 
+           Line[{$CellContext`M, $CellContext`V}], Black, Thin, 
+           Circle[$CellContext`O2, $CellContext`r2], Green, Thick, 
+           Circle[$CellContext`O3, $CellContext`r3], Red, 
+           Circle[$CellContext`O1, $CellContext`r1], Blue, 
+           Circle[$CellContext`O4, $CellContext`r4], 
+           EdgeForm[{Red, Thick}], 
+           FaceForm[Transparent], 
+           Polygon[$CellContext`pt$$], 
+           PointSize[Large], Blue, 
+           Point[{$CellContext`O3, $CellContext`O4}], Red, 
+           Point[$CellContext`O1], Green, 
+           Point[$CellContext`M]}, PlotRange -> 2], 
+         ParametricPlot[$CellContext`T $CellContext`O3 + (
+            1 - $CellContext`T) $CellContext`O4, {$CellContext`T, -100, 
+           100}]]), 
+      "Specifications" :> {{{$CellContext`pt$$, {{0, 0}, {1, 0}, {1, 1}}}, 
+         Automatic, ControlType -> Locator}, {{$CellContext`t$$, 
+          Rational[1, 2], "M"}, 
+         Rational[1, 100000000], 
+         Rational[99999999, 100000000]}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{412., {225.1875, 230.8125}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.910266134490115*^9},
+ CellLabel->"Out[60]=",ExpressionUUID->"f0ad95d3-51e5-4f34-aba1-f864f085b891"]
+}, Open  ]]
+},
+WindowSize->{606, 503.25},
+WindowMargins->{{273, Automatic}, {50.25, Automatic}},
+FrontEndVersion->"13.3 for Linux x86 (64-bit) (July 24, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"895b4912-80fe-4745-bc90-4a295287f9f5"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 33709, 864, 1725, "Input",ExpressionUUID->"66b619ff-fa69-49d8-9ef9-dc6a651802b0"],
+Cell[34292, 888, 10294, 200, 497, "Output",ExpressionUUID->"f0ad95d3-51e5-4f34-aba1-f864f085b891"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
